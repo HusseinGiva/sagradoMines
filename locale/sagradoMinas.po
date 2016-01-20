@@ -1,0 +1,47 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tform1.caption
+msgid "Sagrado*Minas"
+msgstr ""
+
+#: tform1.menuitem1.caption
+msgid "File"
+msgstr ""
+
+#: tform1.menuitem10.caption
+msgid "About"
+msgstr ""
+
+#: tform1.menuitem2.caption
+msgid "Exit"
+msgstr ""
+
+#: tform1.menuitem3.caption
+msgid "Game"
+msgstr ""
+
+#: tform1.menuitem4.caption
+msgid "New"
+msgstr ""
+
+#: tform1.menuitem5.caption
+msgid "Timer"
+msgstr ""
+
+#: tform1.menuitem6.caption
+msgid "Color"
+msgstr ""
+
+#: tform1.menuitem7.caption
+msgid "View"
+msgstr ""
+
+#: tform1.menuitem8.caption
+msgid "Help"
+msgstr ""
+
+#: tform1.menuitem9.caption
+msgid "Reveal"
+msgstr ""
+
