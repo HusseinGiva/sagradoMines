@@ -85,7 +85,7 @@ begin
            Bitmap.Canvas.Font.Name := 'Liberation Mono';
            Bitmap.Canvas.Font.Style := [fsBold];
            Bitmap.Canvas.Font.Size := 10;
-           Bitmap.Canvas.Font.Color := clWhite;
+           Bitmap.Canvas.Font.Color := clBlack;
            //Write the text
            Bitmap.Canvas.TextOut(i*rectangleWidth+rectangleWidth div 2, j*rectangleHeight+rectangleHeight div 3, '*');
          end;

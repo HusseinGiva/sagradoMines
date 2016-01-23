@@ -1,13 +1,13 @@
 object Form1: TForm1
-  Left = 312
+  Left = 1095
   Height = 476
-  Top = 133
+  Top = 125
   Width = 718
   Caption = 'Sagrado*Minas'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 476
+  ClientWidth = 718
   Menu = MainMenu1
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '1.4.4.0'
   object PaintBox1: TPaintBox
     Left = 40
     Height = 400
@@ -77,7 +77,7 @@ object Form1: TForm1
     Left = 528
     Height = 28
     Top = 216
-    Width = 59
+    Width = 60
     Caption = 'Timer:'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -89,9 +89,9 @@ object Form1: TForm1
   end
   object Label7: TLabel
     Left = 488
-    Height = 14
+    Height = 15
     Top = 432
-    Width = 218
+    Width = 216
     Caption = 'Sagrado*Minas - Dummy Miss Games - v. 1.0'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -12
