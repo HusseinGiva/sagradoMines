@@ -1,13 +1,13 @@
 object Form1: TForm1
-  Left = 1091
-  Height = 523
-  Top = 177
+  Left = 411
+  Height = 544
+  Top = 124
   Width = 704
   Caption = 'Sagrado*Minas'
-  ClientHeight = 500
-  ClientWidth = 704
+  ClientHeight = 0
+  ClientWidth = 0
   Menu = MainMenu1
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.2.0'
   object PaintBox1: TPaintBox
     Left = 56
     Height = 400
