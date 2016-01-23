@@ -5,6 +5,11 @@ msgstr "Content-Type: text/plain; charset=UTF-8"
 msgid "Sagrado*Minas"
 msgstr ""
 
+#: tform1.checkbox1.caption
+msgctxt "TFORM1.CHECKBOX1.CAPTION"
+msgid "Timer"
+msgstr ""
+
 #: tform1.label1.caption
 msgid "Bombs:"
 msgstr ""
@@ -38,6 +43,7 @@ msgid "File"
 msgstr ""
 
 #: tform1.menuitem10.caption
+msgctxt "tform1.menuitem10.caption"
 msgid "About"
 msgstr ""
 
@@ -51,10 +57,6 @@ msgstr ""
 
 #: tform1.menuitem4.caption
 msgid "New"
-msgstr ""
-
-#: tform1.menuitem5.caption
-msgid "Timer"
 msgstr ""
 
 #: tform1.menuitem6.caption
@@ -71,5 +73,22 @@ msgstr ""
 
 #: tform1.menuitem9.caption
 msgid "Reveal"
+msgstr ""
+
+#: tform2.caption
+msgctxt "tform2.caption"
+msgid "About"
+msgstr ""
+
+#: tform2.label1.caption
+msgid "Dummy Miss Games"
+msgstr ""
+
+#: tform2.label2.caption
+msgid "By: Beatriz Borges and Hussein Giva"
+msgstr ""
+
+#: tform2.label3.caption
+msgid "Version 1.0"
 msgstr ""
 

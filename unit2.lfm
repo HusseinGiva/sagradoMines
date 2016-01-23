@@ -1,0 +1,51 @@
+object Form2: TForm2
+  Left = -84
+  Height = 239
+  Top = 772
+  Width = 536
+  Caption = 'About'
+  ClientHeight = 239
+  ClientWidth = 536
+  Color = clWhite
+  LCLVersion = '1.4.4.0'
+  object Label1: TLabel
+    Left = 32
+    Height = 16
+    Top = 32
+    Width = 128
+    Caption = 'Dummy Miss Games'
+    Color = clWhite
+    Font.Height = -13
+    Font.Name = 'Lucida Bright'
+    ParentColor = False
+    ParentFont = False
+    Transparent = False
+  end
+  object Label2: TLabel
+    Left = 32
+    Height = 15
+    Top = 64
+    Width = 189
+    Caption = 'By: Beatriz Borges and Hussein Giva'
+    Color = clWhite
+    Font.Height = -13
+    Font.Name = 'Calibri'
+    ParentColor = False
+    ParentFont = False
+    Transparent = False
+  end
+  object Label3: TLabel
+    Left = 32
+    Height = 16
+    Top = 96
+    Width = 72
+    Caption = 'Version 1.0'
+    ParentColor = False
+  end
+  object PaintBox1: TPaintBox
+    Left = 289
+    Height = 176
+    Top = 29
+    Width = 218
+  end
+end
