@@ -5,6 +5,34 @@ msgstr "Content-Type: text/plain; charset=UTF-8"
 msgid "Sagrado*Minas"
 msgstr ""
 
+#: tform1.label1.caption
+msgid "Bombs:"
+msgstr ""
+
+#: tform1.label2.caption
+msgid "Label2"
+msgstr ""
+
+#: tform1.label3.caption
+msgid "Flags:"
+msgstr ""
+
+#: tform1.label4.caption
+msgid "Label4"
+msgstr ""
+
+#: tform1.label5.caption
+msgid "Label5"
+msgstr ""
+
+#: tform1.label6.caption
+msgid "Timer:"
+msgstr ""
+
+#: tform1.label7.caption
+msgid "Sagrado*Minas - Dummy Miss Games - v. 1.0"
+msgstr ""
+
 #: tform1.menuitem1.caption
 msgid "File"
 msgstr ""
