@@ -75,18 +75,18 @@ Var
   i, j, n, p: Integer;
 Begin
   bmFlag := TBitmap.Create;
-  bmFlag.LoadFromFile('flag.bmp');
+  bmFlag.LoadFromFile('bomb.bmp');
   i := x Div 50;
   j := y Div 50;
   n := 50 * i;
   p := 50 * j;
   If (ssRight In Shift) And (flags > 0) Then
   Begin
-    If Label5.Visible = True then
+    If Label5.Visible = True Then
     Begin
-    Timer1.Enabled := True;
-    end;
-    CheckBox1.Visible:=False;
+      Timer1.Enabled := True;
+    End;
+    CheckBox1.Visible := False;
     PaintBox1.Canvas.Draw(n, p, bmFlag);
     bmFlag.Free;
     flags := flags - 1;

@@ -17,11 +17,10 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="0"/>
         <WindowIndex Value="1"/>
-        <TopLine Value="133"/>
-        <CursorPos X="41" Y="145"/>
-        <FoldState Value=" T4602 T7EBZ T3iH031111]3^"/>
+        <TopLine Value="60"/>
+        <CursorPos X="28" Y="78"/>
+        <FoldState Value=" T4602 T7EBZ T3iH03115o"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -42,9 +41,6 @@
         <LoadedDesigner Value="True"/>
       </Unit2>
     </Units>
-    <General>
-      <ActiveWindowIndexAtStart Value="0"/>
-    </General>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="unit1.pas"/>
@@ -168,5 +164,4 @@
       </Position30>
     </JumpHistory>
   </ProjectSession>
-  <EditorMacros Count="0"/>
 </CONFIG>

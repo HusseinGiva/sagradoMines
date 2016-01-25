@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 399
+  Left = 1050
   Height = 468
-  Top = 198
+  Top = 187
   Width = 718
   Caption = 'Sagrado*Minas'
   ClientHeight = 468
@@ -16,12 +16,13 @@ object Form1: TForm1
     Width = 400
     Color = clBlue
     ParentColor = False
+    OnMouseDown = PaintBox1MouseDown
     OnPaint = PaintBox1Paint
   end
   object Label1: TLabel
-    Left = 528
+    Left = 496
     Height = 28
-    Top = 56
+    Top = 80
     Width = 70
     Caption = 'Bombs:'
     Font.CharSet = ANSI_CHARSET
@@ -35,9 +36,9 @@ object Form1: TForm1
   object Label2: TLabel
     Left = 616
     Height = 28
-    Top = 56
-    Width = 61
-    Caption = 'Label2'
+    Top = 80
+    Width = 23
+    Caption = '10'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
     Font.Name = 'Calibri'
@@ -47,9 +48,9 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 528
+    Left = 496
     Height = 28
-    Top = 136
+    Top = 168
     Width = 53
     Caption = 'Flags:'
     Font.CharSet = ANSI_CHARSET
@@ -63,9 +64,9 @@ object Form1: TForm1
   object Label4: TLabel
     Left = 616
     Height = 28
-    Top = 136
-    Width = 61
-    Caption = 'Label4'
+    Top = 168
+    Width = 23
+    Caption = '10'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
     Font.Name = 'Calibri'
@@ -75,9 +76,9 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label6: TLabel
-    Left = 528
+    Left = 496
     Height = 28
-    Top = 216
+    Top = 272
     Width = 60
     Caption = 'Timer:'
     Font.CharSet = ANSI_CHARSET
@@ -89,24 +90,10 @@ object Form1: TForm1
     ParentFont = False
     Visible = False
   end
-  object Label7: TLabel
-    Left = 488
-    Height = 15
-    Top = 432
-    Width = 216
-    Caption = 'Sagrado*Minas - Dummy Miss Games - v. 1.0'
-    Font.CharSet = ANSI_CHARSET
-    Font.Height = -12
-    Font.Name = 'Calibri Light'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    ParentColor = False
-    ParentFont = False
-  end
   object Label5: TLabel
     Left = 616
     Height = 28
-    Top = 216
+    Top = 272
     Width = 61
     Caption = 'Label5'
     Font.CharSet = ANSI_CHARSET
@@ -119,9 +106,9 @@ object Form1: TForm1
     Visible = False
   end
   object CheckBox1: TCheckBox
-    Left = 528
+    Left = 496
     Height = 18
-    Top = 272
+    Top = 240
     Width = 55
     Caption = 'Timer'
     OnChange = CheckBox1Change
