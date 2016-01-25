@@ -70,12 +70,16 @@ End;
 
 Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
+const
+  tripleUp = '../../../';
 Var
   bmFlag: Tbitmap;
   i, j, n, p: Integer;
+  thePath: String;
 Begin
   bmFlag := TBitmap.Create;
-  bmFlag.LoadFromFile('bomb.bmp');
+  thePath := application.Location;
+  bmFlag.LoadFromFile(thePath + tripleUp + 'flag.bmp');
   i := x Div 50;
   j := y Div 50;
   n := 50 * i;
