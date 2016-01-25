@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <Compiler Value="/usr/bin/fpc" Date="1397983219"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -vewnhi -Fi/home/3544/server/AI/SagradoMinasPROJETO/lib/x86_64-linux -Fl/opt/gnome/lib -Fu/usr/share/lazarus/1.2.6/lcl/units/x86_64-linux/gtk2 -Fu/usr/share/lazarus/1.2.6/lcl/units/x86_64-linux -Fu/usr/share/lazarus/1.2.6/components/lazutils/lib/x86_64-linux -Fu/usr/share/lazarus/1.2.6/packager/units/x86_64-linux -Fu/home/3544/server/AI/SagradoMinasPROJETO/ -FU/home/3544/server/AI/SagradoMinasPROJETO/lib/x86_64-linux/ -l -dLCL -dLCLgtk2 sagradoMinas.lpr"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -vewnhi -Fi/home/3544/server/AI/sagradoMines/lib/x86_64-linux -Fl/opt/gnome/lib -Fu/usr/share/lazarus/1.2.6/lcl/units/x86_64-linux/gtk2 -Fu/usr/share/lazarus/1.2.6/lcl/units/x86_64-linux -Fu/usr/share/lazarus/1.2.6/components/lazutils/lib/x86_64-linux -Fu/usr/share/lazarus/1.2.6/packager/units/x86_64-linux -Fu/home/3544/server/AI/sagradoMines/ -FU/home/3544/server/AI/sagradoMines/lib/x86_64-linux/ -l -dLCL -dLCLgtk2 sagradoMinas.lpr"/>
 </CONFIG>

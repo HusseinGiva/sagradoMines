@@ -1,14 +1,14 @@
 object Form1: TForm1
-  Left = 413
+  Left = 1050
   Height = 468
-  Top = 185
+  Top = 187
   Width = 718
   Caption = 'Sagrado*Minas'
-  ClientHeight = 468
+  ClientHeight = 445
   ClientWidth = 718
   Menu = MainMenu1
   OnCreate = FormCreate
-  LCLVersion = '1.4.4.0'
+  LCLVersion = '1.2.6.0'
   object PaintBox1: TPaintBox
     Left = 40
     Height = 400
@@ -16,13 +16,14 @@ object Form1: TForm1
     Width = 400
     Color = clBlue
     ParentColor = False
+    OnMouseDown = PaintBox1MouseDown
     OnPaint = PaintBox1Paint
   end
   object Label1: TLabel
-    Left = 528
+    Left = 496
     Height = 28
-    Top = 56
-    Width = 70
+    Top = 80
+    Width = 87
     Caption = 'Bombs:'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -35,9 +36,9 @@ object Form1: TForm1
   object Label2: TLabel
     Left = 616
     Height = 28
-    Top = 56
-    Width = 61
-    Caption = 'Label2'
+    Top = 80
+    Width = 30
+    Caption = '10'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
     Font.Name = 'Calibri'
@@ -47,10 +48,10 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 528
+    Left = 496
     Height = 28
-    Top = 136
-    Width = 53
+    Top = 168
+    Width = 68
     Caption = 'Flags:'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -63,9 +64,9 @@ object Form1: TForm1
   object Label4: TLabel
     Left = 616
     Height = 28
-    Top = 136
-    Width = 61
-    Caption = 'Label4'
+    Top = 168
+    Width = 30
+    Caption = '10'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
     Font.Name = 'Calibri'
@@ -75,10 +76,10 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label6: TLabel
-    Left = 528
+    Left = 496
     Height = 28
-    Top = 216
-    Width = 60
+    Top = 272
+    Width = 72
     Caption = 'Timer:'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -89,25 +90,11 @@ object Form1: TForm1
     ParentFont = False
     Visible = False
   end
-  object Label7: TLabel
-    Left = 488
-    Height = 15
-    Top = 432
-    Width = 216
-    Caption = 'Sagrado*Minas - Dummy Miss Games - v. 1.0'
-    Font.CharSet = ANSI_CHARSET
-    Font.Height = -12
-    Font.Name = 'Calibri Light'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    ParentColor = False
-    ParentFont = False
-  end
   object Label5: TLabel
     Left = 616
     Height = 28
-    Top = 216
-    Width = 61
+    Top = 272
+    Width = 77
     Caption = 'Label5'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -119,10 +106,10 @@ object Form1: TForm1
     Visible = False
   end
   object CheckBox1: TCheckBox
-    Left = 528
-    Height = 18
-    Top = 272
-    Width = 55
+    Left = 496
+    Height = 24
+    Top = 240
+    Width = 65
     Caption = 'Timer'
     OnChange = CheckBox1Change
     TabOrder = 0

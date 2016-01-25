@@ -1,22 +1,122 @@
 object Form1: TForm1
-  Left = 1091
-  Height = 523
-  Top = 177
-  Width = 704
+  Left = 1050
+  Height = 468
+  Top = 187
+  Width = 718
   Caption = 'Sagrado*Minas'
-  ClientHeight = 500
-  ClientWidth = 704
+  ClientHeight = 445
+  ClientWidth = 718
   Menu = MainMenu1
+  OnCreate = FormCreate
   LCLVersion = '1.2.6.0'
   object PaintBox1: TPaintBox
-    Left = 56
+    Left = 40
     Height = 400
-    Top = 56
+    Top = 24
     Width = 400
     Color = clBlue
     ParentColor = False
+    OnMouseDown = PaintBox1MouseDown
+    OnPaint = PaintBox1Paint
+  end
+  object Label1: TLabel
+    Left = 496
+    Height = 28
+    Top = 80
+    Width = 87
+    Caption = 'Bombs:'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -23
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 616
+    Height = 28
+    Top = 80
+    Width = 30
+    Caption = '10'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -23
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 496
+    Height = 28
+    Top = 168
+    Width = 68
+    Caption = 'Flags:'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -23
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 616
+    Height = 28
+    Top = 168
+    Width = 30
+    Caption = '10'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -23
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 496
+    Height = 28
+    Top = 272
+    Width = 72
+    Caption = 'Timer:'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -23
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    Visible = False
+  end
+  object Label5: TLabel
+    Left = 616
+    Height = 28
+    Top = 272
+    Width = 77
+    Caption = 'Label5'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -23
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    Visible = False
+  end
+  object CheckBox1: TCheckBox
+    Left = 496
+    Height = 24
+    Top = 240
+    Width = 65
+    Caption = 'Timer'
+    OnChange = CheckBox1Change
+    TabOrder = 0
   end
   object MainMenu1: TMainMenu
+    left = 608
+    top = 8
     object MenuItem1: TMenuItem
       Caption = 'File'
       object MenuItem2: TMenuItem
@@ -28,9 +128,6 @@ object Form1: TForm1
       Caption = 'Game'
       object MenuItem4: TMenuItem
         Caption = 'New'
-      end
-      object MenuItem5: TMenuItem
-        Caption = 'Timer'
       end
       object MenuItem6: TMenuItem
         Caption = 'Color'
@@ -46,7 +143,13 @@ object Form1: TForm1
       Caption = 'Help'
       object MenuItem10: TMenuItem
         Caption = 'About'
+        OnClick = MenuItem10Click
       end
     end
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    left = 648
+    top = 8
   end
 end

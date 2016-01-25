@@ -20,7 +20,6 @@ Type
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
-    Label7: TLabel;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem10: TMenuItem;
@@ -33,16 +32,18 @@ Type
     MenuItem9: TMenuItem;
     PaintBox1: TPaintBox;
     Timer1: TTimer;
-    procedure CheckBox1Change(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
+    Procedure CheckBox1Change(Sender: TObject);
+    Procedure FormCreate(Sender: TObject);
     Procedure MenuItem10Click(Sender: TObject);
     Procedure MenuItem2Click(Sender: TObject);
     Procedure MenuItem5Click(Sender: TObject);
+    Procedure PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     Procedure PaintBox1Paint(Sender: TObject);
-    procedure Timer1Timer(Sender: TObject);
+    Procedure Timer1Timer(Sender: TObject);
 
   Private
-    Seconds: integer;
+    Seconds, flags: Integer;
     { private declarations }
   Public
     { public declarations }
@@ -62,36 +63,60 @@ Begin
   Application.Terminate;
 End;
 
-procedure TForm1.MenuItem5Click(Sender: TObject);
-begin
+Procedure TForm1.MenuItem5Click(Sender: TObject);
+Begin
 
-end;
+End;
 
-
-procedure TForm1.FormCreate(Sender: TObject);
-begin
-  Seconds := 600;
-  Timer1.Enabled := False;
-  Label5.Caption := '10:00';
-end;
-
-procedure TForm1.CheckBox1Change(Sender: TObject);
-begin
-  If Label5.Visible = True Then
+Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+Var
+  bmFlag: Tbitmap;
+  i, j, n, p: Integer;
+Begin
+  bmFlag := TBitmap.Create;
+  bmFlag.LoadFromFile('flag.bmp');
+  i := x Div 50;
+  j := y Div 50;
+  n := 50 * i;
+  p := 50 * j;
+  If (ssRight In Shift) And (flags > 0) Then
+  Begin
+    If Label5.Visible = True Then
     Begin
-    Timer1.Enabled := False;
+      Timer1.Enabled := True;
+    End;
+    CheckBox1.Visible := False;
+    PaintBox1.Canvas.Draw(n, p, bmFlag);
+    bmFlag.Free;
+    flags := flags - 1;
+    Label4.Caption := IntToStr(flags);
+  End;
+End;
+
+Procedure TForm1.FormCreate(Sender: TObject);
+Begin
+  Seconds := 150;
+  Timer1.Enabled := False;
+  Label5.Caption := '02:30';
+  flags := 10;
+End;
+
+Procedure TForm1.CheckBox1Change(Sender: TObject);
+Begin
+  If Label5.Visible = True Then
+  Begin
     Label5.Visible := False;
-    end
+  End
   Else
   Begin
-    Timer1.Enabled := True;
     Label5.Visible := True;
-  end;
+  End;
   If Label6.Visible = True Then
     Label6.Visible := False
   Else
     Label6.Visible := True;
-end;
+End;
 
 Procedure TForm1.MenuItem10Click(Sender: TObject);
 Begin
@@ -117,11 +142,12 @@ Begin
     For j := 0 To 7 Do
     Begin
       Bitmap.Canvas.Pen.Color := clBlack; //Line Color
-      Bitmap.Canvas.Brush.Color := clYellow; //Brush color
-      rectangleHeight := PaintBox1.Height Div 8;
-      rectangleWidth := PaintBox1.Width Div 8;
+      Bitmap.Canvas.Brush.Color := clGray; //Brush color
+      rectangleHeight := 50;
+      rectangleWidth := 50;
       Bitmap.Canvas.Rectangle(i * rectangleWidth + 1, j * rectangleHeight + 1,
-        i * rectangleWidth + rectangleWidth - 1, j * rectangleHeight + rectangleHeight - 1);
+        i * rectangleWidth + rectangleWidth - 1, j * rectangleHeight +
+        rectangleHeight - 1);
       //Write some text, in this case an *
       //Define Font properties
       Bitmap.Canvas.Font.Name := 'Liberation Mono';
@@ -133,28 +159,31 @@ Begin
         2, j * rectangleHeight + rectangleHeight Div 3, '*');
     End;
   End;
-  PaintBox1.Canvas.Draw(0, 0, Bitmap);
+  PaintBox1.Canvas.Draw(0, 1, Bitmap);
   Bitmap.Free; //Free the memory used by the object Bitmap
 End;
 
-
-procedure TForm1.Timer1Timer(Sender: TObject);
-var Min, Sec: string;
-begin
-  if Seconds = 0 then begin
+Procedure TForm1.Timer1Timer(Sender: TObject);
+Var
+  Min, Sec: String;
+Begin
+  If Seconds = 0 Then
+  Begin
     Timer1.Enabled := False;
-    ShowMessage('Done!');
-  end
-  else begin
-    dec(Seconds);
-    Min := IntToStr(Seconds div 60); // integer division
-    Sec := IntToStr(Seconds mod 60); // remainder
-    if Length(Min) = 1 then Min := '0' + Min;
-    if Length(Sec) = 1 then Sec := '0' + Sec;
+    ShowMessage('Time is up!');
+  End
+  Else
+  Begin
+    Dec(Seconds);
+    Min := IntToStr(Seconds Div 60);
+    Sec := IntToStr(Seconds Mod 60);
+    If Length(Min) = 1 Then
+      Min := '0' + Min;
+    If Length(Sec) = 1 Then
+      Sec := '0' + Sec;
     Label5.Caption := Min + ':' + Sec;
-  end;
-end;
-
+  End;
+End;
 
 
 End.
