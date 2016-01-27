@@ -71,21 +71,21 @@ End;
 Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 Var
-  bmFlag: Tbitmap;
+  bmFlag: TBitmap;
   i, j, n, p: Integer;
 Begin
-  bmFlag := TBitmap.Create;
-  bmFlag.LoadFromFile('flag.bmp');
-  i := x Div 50;
-  j := y Div 50;
-  n := 50 * i;
-  p := 50 * j;
   If (ssRight In Shift) And (flags > 0) Then
   Begin
     If Label5.Visible = True Then
     Begin
       Timer1.Enabled := True;
     End;
+    bmFlag := TBitmap.Create;
+    bmFlag.LoadFromFile('flag.bmp');
+    i := x Div 50;
+    j := y Div 50;
+    n := 50 * i;
+    p := 50 * j;
     CheckBox1.Visible := False;
     PaintBox1.Canvas.Draw(n, p, bmFlag);
     bmFlag.Free;
@@ -205,7 +205,7 @@ Begin
       Bitmap.Canvas.Font.Size := 10;
       Bitmap.Canvas.Font.Color := clBlack;
       //Write the text
-      If gameArray[i + 1, j + 1].bomb Then
+       If gameArray[i + 1, j + 1].bomb Then
       Begin
         bmBomb := TBitmap.Create;
         bmBomb.LoadFromFile('bomb.bmp');

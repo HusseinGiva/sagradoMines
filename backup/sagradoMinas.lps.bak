@@ -7,7 +7,9 @@
       <Unit0>
         <Filename Value="sagradoMinas.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="34"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="1"/>
+        <UsageCount Value="36"/>
       </Unit0>
       <Unit1>
         <Filename Value="unit1.pas"/>
@@ -18,10 +20,10 @@
         <UnitName Value="Unit1"/>
         <IsVisibleTab Value="True"/>
         <WindowIndex Value="1"/>
-        <TopLine Value="207"/>
-        <CursorPos X="32" Y="219"/>
-        <FoldState Value=" T3jA0u211l"/>
-        <UsageCount Value="34"/>
+        <TopLine Value="175"/>
+        <CursorPos X="32" Y="188"/>
+        <FoldState Value=" T3iM0301311q"/>
+        <UsageCount Value="36"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -35,7 +37,7 @@
         <EditorIndex Value="1"/>
         <WindowIndex Value="1"/>
         <CursorPos X="15"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit2>
@@ -48,7 +50,7 @@
         <UsageCount Value="21"/>
       </Unit3>
     </Units>
-    <JumpHistory Count="19" HistoryIndex="18">
+    <JumpHistory Count="23" HistoryIndex="22">
       <Position1>
         <Filename Value="unit1.pas"/>
         <Caret Line="79" Column="23" TopLine="59"/>
@@ -124,6 +126,22 @@
         <Filename Value="unit1.pas"/>
         <Caret Line="8" Column="22"/>
       </Position19>
+      <Position20>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="71" Column="22" TopLine="57"/>
+      </Position20>
+      <Position21>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="210" Column="27" TopLine="206"/>
+      </Position21>
+      <Position22>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="180" Column="19" TopLine="97"/>
+      </Position22>
+      <Position23>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="215" Column="15" TopLine="204"/>
+      </Position23>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
