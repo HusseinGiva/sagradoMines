@@ -85,24 +85,24 @@ Begin
   j := y Div 50;
   n := 50 * i;
   p := 50 * j;
-  If (ssRight In Shift) And (flags > 0) Then
+  If (ssRight In Shift) Then
   Begin
     If Label5.Visible = True Then
     Begin
       Timer1.Enabled := True;
     End;
     CheckBox1.Visible := False;
-    bmFlag := TBitmap.Create;
-    bmFlag.LoadFromFile('flag.bmp');
-    If gameArray[i, j].flag = False Then
+    If (gameArray[i, j].flag = False) And (flags > 0) Then
     Begin
+      bmFlag := TBitmap.Create;
+      bmFlag.LoadFromFile('flag.bmp');
       PaintBox1.Canvas.Draw(n, p, bmFlag);
       gameArray[i, j].flag := True;
       bmFlag.Free;
       flags := flags - 1;
       Label4.Caption := IntToStr(flags);
     End
-    Else
+    Else If gameArray[i, j].flag = True Then
     Begin
       gameArray[i, j].flag := False;
       flags := flags + 1;
@@ -210,12 +210,10 @@ Begin
     Label6.Visible := True;
 End;
 
-
 Procedure TForm1.MenuItem10Click(Sender: TObject);
 Begin
   Form2.ShowModal;
 End;
-
 
 Procedure TForm1.PaintBox1Paint(Sender: TObject);
 Var
