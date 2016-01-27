@@ -1,14 +1,14 @@
 object Form1: TForm1
-  Left = 1120
-  Height = 468
-  Top = 266
+  Left = 604
+  Height = 479
+  Top = 112
   Width = 718
   Caption = 'Sagrado*Minas'
-  ClientHeight = 445
+  ClientHeight = 459
   ClientWidth = 718
   Menu = MainMenu1
   OnCreate = FormCreate
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.4.0'
   object PaintBox1: TPaintBox
     Left = 40
     Height = 400
@@ -23,7 +23,7 @@ object Form1: TForm1
     Left = 496
     Height = 28
     Top = 80
-    Width = 87
+    Width = 70
     Caption = 'Bombs:'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -37,7 +37,7 @@ object Form1: TForm1
     Left = 616
     Height = 28
     Top = 80
-    Width = 30
+    Width = 24
     Caption = '10'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -51,7 +51,7 @@ object Form1: TForm1
     Left = 496
     Height = 28
     Top = 168
-    Width = 68
+    Width = 53
     Caption = 'Flags:'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -65,7 +65,7 @@ object Form1: TForm1
     Left = 616
     Height = 28
     Top = 168
-    Width = 30
+    Width = 24
     Caption = '10'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -79,7 +79,7 @@ object Form1: TForm1
     Left = 496
     Height = 28
     Top = 272
-    Width = 72
+    Width = 59
     Caption = 'Timer:'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -94,7 +94,7 @@ object Form1: TForm1
     Left = 616
     Height = 28
     Top = 272
-    Width = 77
+    Width = 61
     Caption = 'Label5'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -107,9 +107,9 @@ object Form1: TForm1
   end
   object CheckBox1: TCheckBox
     Left = 496
-    Height = 24
+    Height = 19
     Top = 240
-    Width = 65
+    Width = 51
     Caption = 'Timer'
     OnChange = CheckBox1Change
     TabOrder = 0
