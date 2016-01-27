@@ -9,6 +9,11 @@ Uses
   ExtCtrls, StdCtrls, Unit2;
 
 Type
+  TMine = Record
+    bomb, flag: Boolean;
+    counter: Integer;
+  End;
+  TArray = Array[1..8, 1..8] Of TMine;
 
   { TForm1 }
 
@@ -51,6 +56,7 @@ Type
 
 Var
   Form1: TForm1;
+  gameArray: TArray;
 
 Implementation
 
@@ -95,11 +101,61 @@ Begin
 End;
 
 Procedure TForm1.FormCreate(Sender: TObject);
+Var
+  x, y, b, m, n: Integer;
 Begin
   Seconds := 150;
   Timer1.Enabled := False;
   Label5.Caption := '02:30';
   flags := 10;
+  b := 0;
+  For x := 1 To 8 Do  // Inicializa bombs false
+  Begin
+    For y := 1 To 8 Do
+    Begin
+      gameArray[x, y].bomb := False;
+    End;
+  End;
+  Repeat  // Coloca 10 bombs aleatoriamente
+    Begin
+      Randomize;
+      x := Random(9);
+      y := Random(9);
+      If Not gameArray[x, y].bomb Then
+      Begin
+        gameArray[x, y].bomb := True;
+        b := b + 1;
+      End;
+    End;
+  Until b = 10;
+  For x := 1 To 8 Do  // Inicializa counters 0
+  Begin
+    For y := 1 To 8 Do
+    Begin
+      If gameArray[x, y].bomb = True Then
+      Else
+        gameArray[x, y].counter := 0;
+    End;
+  End;
+  For x := 1 To 8 Do  // colocar os counter nas casas sem bomba
+  Begin
+    For y := 1 To 8 Do
+    Begin
+      If gameArray[x, y].bomb = True Then
+      Else If gameArray[x, y].bomb = False Then
+      Begin
+        For m := -1 To 1 Do
+        Begin
+          For n := -1 To 1 Do
+          Begin
+            If (gameArray[x + m, y + n].bomb = True) And (x + m >= 1) And
+              (x + m <= 8) And (y + n >= 1) And (y + n <= 8) Then
+              gameArray[x, y].counter := gameArray[x, y].counter + 1;
+          End;
+        End;
+      End;
+    End;
+  End;
 End;
 
 Procedure TForm1.CheckBox1Change(Sender: TObject);
@@ -126,7 +182,7 @@ End;
 Procedure TForm1.PaintBox1Paint(Sender: TObject);
 Var
   Bitmap: TBitmap;
-  rectangleHeight, rectangleWidth, i, j: Integer;
+  rectangleHeight, rectangleWidth, i, j, x, y: Integer;
 Begin
   Bitmap := TBitmap.Create;
   // Initializes the Bitmap Size
@@ -155,8 +211,14 @@ Begin
       Bitmap.Canvas.Font.Size := 10;
       Bitmap.Canvas.Font.Color := clBlack;
       //Write the text
-      Bitmap.Canvas.TextOut(i * rectangleWidth + rectangleWidth Div
-        2, j * rectangleHeight + rectangleHeight Div 3, '*');
+      If gameArray[i + 1, j + 1].bomb Then
+        Bitmap.Canvas.TextOut(i * rectangleWidth + rectangleWidth Div
+          2, j * rectangleHeight + rectangleHeight Div 3, '*')
+      Else
+        Bitmap.Canvas.TextOut(i * rectangleWidth + rectangleWidth Div
+          2, j * rectangleHeight + rectangleHeight Div 3,
+          IntToStr(gameArray[i + 1, j + 1].counter));
+
     End;
   End;
   PaintBox1.Canvas.Draw(0, 1, Bitmap);

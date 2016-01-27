@@ -1,0 +1,18 @@
+object Form3: TForm3
+  Left = 1610
+  Height = 448
+  Top = 407
+  Width = 475
+  Caption = 'Form3'
+  ClientHeight = 448
+  ClientWidth = 475
+  LCLVersion = '1.2.6.0'
+  object PaintBox1: TPaintBox
+    Left = 40
+    Height = 400
+    Top = 24
+    Width = 400
+    Color = clBlue
+    ParentColor = False
+  end
+end

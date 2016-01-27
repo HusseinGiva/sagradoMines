@@ -90,3 +90,7 @@ msgstr ""
 msgid "Version 1.0"
 msgstr ""
 
+#: tform3.caption
+msgid "Form3"
+msgstr ""
+
