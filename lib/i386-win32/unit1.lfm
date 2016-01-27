@@ -1,10 +1,10 @@
 object Form1: TForm1
-  Left = 717
-  Height = 479
-  Top = 85
+  Left = 2134
+  Height = 504
+  Top = 158
   Width = 718
   Caption = 'Sagrado*Minas'
-  ClientHeight = 459
+  ClientHeight = 465
   ClientWidth = 718
   Menu = MainMenu1
   OnCreate = FormCreate
@@ -107,9 +107,9 @@ object Form1: TForm1
   end
   object CheckBox1: TCheckBox
     Left = 496
-    Height = 19
+    Height = 36
     Top = 240
-    Width = 51
+    Width = 97
     Caption = 'Timer'
     OnChange = CheckBox1Change
     TabOrder = 0
@@ -137,6 +137,7 @@ object Form1: TForm1
       Caption = 'View'
       object MenuItem9: TMenuItem
         Caption = 'Reveal'
+        OnClick = MenuItem9Click
       end
     end
     object MenuItem8: TMenuItem

@@ -41,6 +41,7 @@ Type
     Procedure FormCreate(Sender: TObject);
     Procedure MenuItem10Click(Sender: TObject);
     Procedure MenuItem2Click(Sender: TObject);
+    Procedure MenuItem9Click(Sender: TObject);
     Procedure PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     Procedure PaintBox1Paint(Sender: TObject);
@@ -68,29 +69,63 @@ Begin
   Application.Terminate;
 End;
 
+Procedure TForm1.MenuItem9Click(Sender: TObject);
+Begin
+  MenuItem9.Checked := Not MenuItem9.Checked;
+  Invalidate;
+End;
+
 Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 Var
-  bmFlag: TBitmap;
+  bmFlag, bmBomb: TBitmap;
   i, j, n, p: Integer;
 Begin
+  i := x Div 50;
+  j := y Div 50;
+  n := 50 * i;
+  p := 50 * j;
   If (ssRight In Shift) And (flags > 0) Then
   Begin
     If Label5.Visible = True Then
     Begin
       Timer1.Enabled := True;
     End;
+    CheckBox1.Visible := False;
     bmFlag := TBitmap.Create;
     bmFlag.LoadFromFile('flag.bmp');
-    i := x Div 50;
-    j := y Div 50;
-    n := 50 * i;
-    p := 50 * j;
-    CheckBox1.Visible := False;
-    PaintBox1.Canvas.Draw(n, p, bmFlag);
-    bmFlag.Free;
-    flags := flags - 1;
-    Label4.Caption := IntToStr(flags);
+    If gameArray[i, j].flag = False Then
+    Begin
+      PaintBox1.Canvas.Draw(n, p, bmFlag);
+      gameArray[i, j].flag := True;
+      bmFlag.Free;
+      flags := flags - 1;
+      Label4.Caption := IntToStr(flags);
+    End
+    Else
+    Begin
+      gameArray[i, j].flag := False;
+      flags := flags + 1;
+      Label4.Caption := IntToStr(flags);
+      PaintBox1.Canvas.Brush.Color := clInactiveCaption;
+      PaintBox1.Canvas.Rectangle(i * 50 + 1, j * 50 + 1,
+        i * 50 + 50 - 1, j * 50 + 50 - 1);
+    End;
+  End
+  Else If (ssLeft In Shift) And (gameArray[i, j].flag = False) Then
+  Begin
+    If gameArray[i, j].bomb = True Then
+    Begin
+      PaintBox1.Canvas.Brush.Color := clWhite;
+      PaintBox1.Canvas.Rectangle(i * 50 + 1, j * 50 + 1,
+        i * 50 + 50 - 1, j * 50 + 50 - 1);
+      bmBomb := TBitmap.Create;
+      bmBomb.LoadFromFile('bomb.bmp');
+      n := 50 * i;
+      p := 50 * j;
+      PaintBox1.Canvas.Draw(n, p, bmBomb);
+      bmBomb.Free;
+    End;
   End;
 End;
 
@@ -122,6 +157,13 @@ Begin
       End;
     End;
   Until b = 10;
+  For x := 1 To 8 Do  // Inicializa flag false
+  Begin
+    For y := 1 To 8 Do
+    Begin
+      gameArray[x, y].flag := False;
+    End;
+  End;
   For x := 1 To 8 Do  // Inicializa counters 0
   Begin
     For y := 1 To 8 Do
@@ -168,10 +210,12 @@ Begin
     Label6.Visible := True;
 End;
 
+
 Procedure TForm1.MenuItem10Click(Sender: TObject);
 Begin
   Form2.ShowModal;
 End;
+
 
 Procedure TForm1.PaintBox1Paint(Sender: TObject);
 Var
@@ -192,7 +236,7 @@ Begin
     For j := 0 To 7 Do
     Begin
       Bitmap.Canvas.Pen.Color := clBlack; //Line Color
-      Bitmap.Canvas.Brush.Color := clWhite; //Brush color
+      Bitmap.Canvas.Brush.Color := clInactiveCaption; //Brush color
       rectangleHeight := 50;
       rectangleWidth := 50;
       Bitmap.Canvas.Rectangle(i * rectangleWidth + 1, j * rectangleHeight + 1,
@@ -205,8 +249,12 @@ Begin
       Bitmap.Canvas.Font.Size := 10;
       Bitmap.Canvas.Font.Color := clBlack;
       //Write the text
-       If gameArray[i + 1, j + 1].bomb Then
+      If gameArray[i + 1, j + 1].bomb And MenuItem9.Checked Then
       Begin
+        Bitmap.Canvas.Brush.Color := clWhite;
+        Bitmap.Canvas.Rectangle(i * rectangleWidth + 1, j * rectangleHeight + 1,
+          i * rectangleWidth + rectangleWidth - 1, j * rectangleHeight +
+          rectangleHeight - 1);
         bmBomb := TBitmap.Create;
         bmBomb.LoadFromFile('bomb.bmp');
         n := 50 * i;
@@ -214,10 +262,18 @@ Begin
         Bitmap.Canvas.Draw(n, p, bmBomb);
         bmBomb.Free;
       End
-      Else
-        Bitmap.Canvas.TextOut(i * rectangleWidth + rectangleWidth Div
-          2, j * rectangleHeight + rectangleHeight Div 3,
-          IntToStr(gameArray[i + 1, j + 1].counter));
+      Else If MenuItem9.Checked Then
+      Begin
+        Bitmap.Canvas.Brush.Color := clWhite;
+        Bitmap.Canvas.Rectangle(i * rectangleWidth + 1, j * rectangleHeight + 1,
+          i * rectangleWidth + rectangleWidth - 1, j * rectangleHeight +
+          rectangleHeight - 1);
+        If gameArray[i + 1, j + 1].counter <> 0 Then
+          Bitmap.Canvas.TextOut(i * rectangleWidth + rectangleWidth Div
+            2, j * rectangleHeight + rectangleHeight Div 3,
+            IntToStr(gameArray[i + 1, j + 1].counter));
+      End;
+
     End;
   End;
   PaintBox1.Canvas.Draw(0, 0, Bitmap);

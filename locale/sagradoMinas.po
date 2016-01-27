@@ -2,6 +2,7 @@ msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: tform1.caption
+msgctxt "tform1.caption"
 msgid "Sagrado*Minas"
 msgstr ""
 
@@ -88,6 +89,11 @@ msgstr ""
 
 #: tform2.label3.caption
 msgid "Version 1.0"
+msgstr ""
+
+#: tform2.label4.caption
+msgctxt "TFORM2.LABEL4.CAPTION"
+msgid "Sagrado*Minas"
 msgstr ""
 
 #: tform3.caption

@@ -16,6 +16,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
     PaintBox1: TPaintBox;
   private
     { private declarations }
@@ -29,6 +30,8 @@ var
 implementation
 
 {$R *.lfm}
+
+{ TForm2 }
 
 end.
 
