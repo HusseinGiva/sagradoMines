@@ -79,12 +79,18 @@ Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 Var
   bmFlag, bmBomb: TBitmap;
-  i, j, n, p: Integer;
+  i, j, n, p, a, b: Integer;
 Begin
-  i := x Div 50;
-  j := y Div 50;
-  n := 50 * i;
-  p := 50 * j;
+  If X Mod 50 = 0 Then
+    i := X Div 50
+  Else
+    i := (X Div 50) + 1;
+  If Y Mod 50 = 0 Then
+    j := Y Div 50
+  Else
+    j := (Y Div 50) + 1;
+  n := (50 * i) - 50;
+  p := (50 * j) - 50;
   If (ssRight In Shift) Then
   Begin
     If Label5.Visible = True Then
@@ -96,7 +102,7 @@ Begin
     Begin
       bmFlag := TBitmap.Create;
       bmFlag.LoadFromFile('flag.bmp');
-      PaintBox1.Canvas.Draw(n, p, bmFlag);
+      PaintBox1.Canvas.Draw(n+2, p-2, bmFlag);
       gameArray[i, j].flag := True;
       bmFlag.Free;
       flags := flags - 1;
@@ -108,23 +114,29 @@ Begin
       flags := flags + 1;
       Label4.Caption := IntToStr(flags);
       PaintBox1.Canvas.Brush.Color := clInactiveCaption;
-      PaintBox1.Canvas.Rectangle(i * 50 + 1, j * 50 + 1,
-        i * 50 + 50 - 1, j * 50 + 50 - 1);
+      PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
     End;
   End
   Else If (ssLeft In Shift) And (gameArray[i, j].flag = False) Then
   Begin
+    If Label5.Visible = True Then
+    Begin
+      Timer1.Enabled := True;
+    End;
+    CheckBox1.Visible := False;
     If gameArray[i, j].bomb = True Then
     Begin
       PaintBox1.Canvas.Brush.Color := clWhite;
-      PaintBox1.Canvas.Rectangle(i * 50 + 1, j * 50 + 1,
-        i * 50 + 50 - 1, j * 50 + 50 - 1);
+      PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
       bmBomb := TBitmap.Create;
       bmBomb.LoadFromFile('bomb.bmp');
-      n := 50 * i;
-      p := 50 * j;
       PaintBox1.Canvas.Draw(n, p, bmBomb);
       bmBomb.Free;
+    End
+    Else If gameArray[i, j].counter = 0 Then
+    Begin
+      PaintBox1.Canvas.Brush.Color := clWhite;
+      PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
     End;
   End;
 End;
