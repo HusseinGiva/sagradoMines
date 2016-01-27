@@ -41,7 +41,6 @@ Type
     Procedure FormCreate(Sender: TObject);
     Procedure MenuItem10Click(Sender: TObject);
     Procedure MenuItem2Click(Sender: TObject);
-    Procedure MenuItem5Click(Sender: TObject);
     Procedure PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     Procedure PaintBox1Paint(Sender: TObject);
@@ -69,15 +68,10 @@ Begin
   Application.Terminate;
 End;
 
-Procedure TForm1.MenuItem5Click(Sender: TObject);
-Begin
-
-End;
-
 Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 Var
-  bmFlag, bmBomb: Tbitmap;
+  bmFlag: Tbitmap;
   i, j, n, p: Integer;
 Begin
   bmFlag := TBitmap.Create;
@@ -97,22 +91,6 @@ Begin
     bmFlag.Free;
     flags := flags - 1;
     Label4.Caption := IntToStr(flags);
-  End;
-  bmBomb := TBitmap.Create;
-  bmBomb.LoadFromFile('bomb.bmp');
-  i := x Div 50;
-  j := y Div 50;
-  n := 50 * i;
-  p := 50 * j;
-  If (ssLeft In Shift) and (gameArray[i, j].bomb=True) Then
-  Begin
-    If Label5.Visible = True Then
-    Begin
-      Timer1.Enabled := True;
-    End;
-    CheckBox1.Visible := False;
-    PaintBox1.Canvas.Draw(n, p, bmBomb);
-    bmBomb.Free;
   End;
 End;
 
@@ -137,7 +115,7 @@ Begin
       Randomize;
       x := Random(9);
       y := Random(9);
-      If Not gameArray[x, y].bomb and (x<>0) and (y<>0) Then
+      If Not gameArray[x, y].bomb And (x <> 0) And (y <> 0) Then
       Begin
         gameArray[x, y].bomb := True;
         b := b + 1;
@@ -197,8 +175,8 @@ End;
 
 Procedure TForm1.PaintBox1Paint(Sender: TObject);
 Var
-  Bitmap: TBitmap;
-  rectangleHeight, rectangleWidth, i, j: Integer;
+  Bitmap, bmBomb: TBitmap;
+  rectangleHeight, rectangleWidth, i, j, n, p: Integer;
 Begin
   Bitmap := TBitmap.Create;
   // Initializes the Bitmap Size
@@ -228,16 +206,21 @@ Begin
       Bitmap.Canvas.Font.Color := clBlack;
       //Write the text
       If gameArray[i + 1, j + 1].bomb Then
-        Bitmap.Canvas.TextOut(i * rectangleWidth + rectangleWidth Div
-          2, j * rectangleHeight + rectangleHeight Div 3, '!')
+      Begin
+        bmBomb := TBitmap.Create;
+        bmBomb.LoadFromFile('bomb.bmp');
+        n := 50 * i;
+        p := 50 * j;
+        Bitmap.Canvas.Draw(n, p, bmBomb);
+        bmBomb.Free;
+      End
       Else
         Bitmap.Canvas.TextOut(i * rectangleWidth + rectangleWidth Div
           2, j * rectangleHeight + rectangleHeight Div 3,
           IntToStr(gameArray[i + 1, j + 1].counter));
-
     End;
   End;
-  PaintBox1.Canvas.Draw(0, 1, Bitmap);
+  PaintBox1.Canvas.Draw(0, 0, Bitmap);
   Bitmap.Free; //Free the memory used by the object Bitmap
 End;
 
@@ -262,6 +245,5 @@ Begin
     Label5.Caption := Min + ':' + Sec;
   End;
 End;
-
 
 End.
