@@ -1,15 +1,29 @@
-Repeat
-      Begin
-        For a := -1 To 1 Do
-          Begin
-            For b := -1 To 1 Do
-              Begin
-                X:=i+a;
-                Y:=j+b;
-                PaintBox1.Canvas.Brush.Color := clWhite;
-                PaintBox1.Canvas.Rectangle(n+1, p+1, n+50-1, p+50-1);
-                PaintBox1.Canvas.TextOut(n + 50 Div 2, p + 50 Div 3, IntToStr(gameArray[i+a, j+b].counter));
-              End;
-          End;
-      End;
-    Until gameArray[i+a, j+b].counter <> 0;
+Procedure TForm1.findEmptyCells(i, j: Integer);
+Var
+  n, p: Integer;
+Begin
+  n := (50 * i) - 50;
+  p := (50 * j) - 50;
+  If (gameArray[i, j].counter = 0) And (gameArray[i, j].Open = False) Then
+  Begin
+    PaintBox1.Canvas.Brush.Color := clWhite;
+    PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
+    gameArray[i, j].Open := True;
+    findEmptyCells(i - 1, j); //left
+    findEmptyCells(i + 1, j); //right
+    findEmptyCells(i, j + 1); //up
+    findEmptyCells(i, j - 1); //down
+    findEmptyCells(i - 1, j + 1); //up-left
+    findEmptyCells(i + 1, j + 1); //up-right
+    findEmptyCells(i - 1, j - 1); //down-left
+    findEmptyCells(i + 1, j - 1);
+  End
+  Else If (gameArray[i, j].counter <> 0) And (gameArray[i, j].Open = False) Then
+  Begin
+    PaintBox1.Canvas.Brush.Color := clWhite;
+    PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
+    PaintBox1.Canvas.TextOut(n + 50 Div 2, p + 50 Div 3,
+      IntToStr(gameArray[i, j].counter));
+    gameArray[i, j].Open := True;
+  End;
+End;
