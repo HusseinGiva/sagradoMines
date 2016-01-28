@@ -107,6 +107,8 @@ End;
 
 Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
+Label
+  33;
 Var
   bmFlag, bmBomb: TBitmap;
   i, j, n, p, a, b, flagcount, opencount: Integer;
@@ -195,6 +197,8 @@ Begin
           Application.Run;
         End;
         mrNo: Application.Terminate;
+        Else
+          Application.Terminate;
       End;
     End
     Else If gameArray[i, j].counter = 0 Then
@@ -202,7 +206,39 @@ Begin
       PaintBox1.Canvas.Brush.Color := clWhite;
       PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
       gameArray[i, j].Open := True;
+      For a := -1 To 1 Do
+      Begin
+        For b := -1 To 1 Do
+        Begin
+          If (i + a >= 1) And (i + a <= 8) And (j + b >= 1) And (j + b <= 8) Then
+          Begin
+            If (gameArray[i + a, j + b].counter = 0) And
+              (gameArray[i + a, j + b].Open = False) And
+              (gameArray[i + a, j + b].flag = False) Then
+            Begin
+              PaintBox1.Canvas.Brush.Color := clWhite;
+              PaintBox1.Canvas.Rectangle((50 * (i + a) - 50) + 1,
+                (50 * (j + b) - 50) + 1, (50 * (i + a) - 50) + 50 -
+                1, (50 * (j + b) - 50) + 50 - 1);
+              gameArray[i + a, j + b].Open := True;
 
+            End
+
+            Else If (gameArray[i + a, j + b].Open = False) And
+              (gameArray[i + a, j + b].flag = False) Then
+            Begin
+              PaintBox1.Canvas.Brush.Color := clWhite;
+              PaintBox1.Canvas.Rectangle((50 * (i + a) - 50) + 1,
+                (50 * (j + b) - 50) + 1, (50 * (i + a) - 50) + 50 -
+                1, (50 * (j + b) - 50) + 50 - 1);
+              PaintBox1.Canvas.TextOut((50 * (i + a) - 50) + 50 Div 2,
+                (50 * (j + b) - 50) + 50 Div 3,
+                IntToStr(gameArray[i + a, j + b].counter));
+              gameArray[i + a, j + b].Open := True;
+            End;
+          End;
+        End;
+      End;
     End
     Else If gameArray[i, j].counter <> 0 Then
     Begin
@@ -267,6 +303,8 @@ Begin
           Application.Run;
         End;
         mrNo: Application.Terminate;
+        Else
+          Application.Terminate;
       End;
     End;
   End;
@@ -448,6 +486,8 @@ Begin
         Application.Run;
       End;
       mrNo: Application.Terminate;
+      Else
+        Application.Terminate;
     End;
   End
   Else
