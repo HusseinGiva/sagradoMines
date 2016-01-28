@@ -107,8 +107,6 @@ End;
 
 Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
-Label
-  33;
 Var
   bmFlag, bmBomb: TBitmap;
   i, j, n, p, a, b, flagcount, opencount: Integer;
@@ -196,12 +194,12 @@ Begin
           Application.CreateForm(TForm1, Form1);
           Application.Run;
         End;
-        mrNo: Application.Terminate;
+        mrNo: Halt;
         Else
-          Application.Terminate;
+          Halt;
       End;
     End
-    Else If gameArray[i, j].counter = 0 Then
+    Else If (gameArray[i, j].counter = 0) And (gameArray[i, j].Open = False) Then
     Begin
       PaintBox1.Canvas.Brush.Color := clWhite;
       PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
@@ -223,7 +221,6 @@ Begin
               gameArray[i + a, j + b].Open := True;
 
             End
-
             Else If (gameArray[i + a, j + b].Open = False) And
               (gameArray[i + a, j + b].flag = False) Then
             Begin
@@ -240,7 +237,7 @@ Begin
         End;
       End;
     End
-    Else If gameArray[i, j].counter <> 0 Then
+    Else If (gameArray[i, j].counter <> 0) And (gameArray[i, j].Open = False) Then
     Begin
       PaintBox1.Canvas.Brush.Color := clWhite;
       PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
@@ -302,9 +299,9 @@ Begin
           Application.CreateForm(TForm1, Form1);
           Application.Run;
         End;
-        mrNo: Application.Terminate;
+        mrNo: Halt;
         Else
-          Application.Terminate;
+          Halt;
       End;
     End;
   End;
@@ -485,9 +482,9 @@ Begin
         Application.CreateForm(TForm1, Form1);
         Application.Run;
       End;
-      mrNo: Application.Terminate;
+      mrNo: Halt;
       Else
-        Application.Terminate;
+        Halt;
     End;
   End
   Else
