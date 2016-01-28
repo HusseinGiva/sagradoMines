@@ -162,13 +162,13 @@ Begin
       PaintBox1.Canvas.Brush.Color := clWhite;
       PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
       gameArray[i, j].Open := True;
+
     End
     Else If gameArray[i, j].counter <> 0 Then
     Begin
       PaintBox1.Canvas.Brush.Color := clWhite;
       PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
-      PaintBox1.Canvas.TextOut(n + 50 Div 2, p + 50 Div 3,
-        IntToStr(gameArray[i, j].counter));
+      PaintBox1.Canvas.TextOut(n + 50 Div 2, p + 50 Div 3, IntToStr(gameArray[i, j].counter));
       gameArray[i, j].Open := True;
     End;
   End;
