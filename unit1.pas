@@ -6,7 +6,7 @@ Interface
 
 Uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ExtCtrls, StdCtrls, Unit2;
+  ExtCtrls, StdCtrls, ButtonPanel, Unit2;
 
 Type
   TMine = Record
@@ -41,6 +41,7 @@ Type
     Procedure FormCreate(Sender: TObject);
     Procedure MenuItem10Click(Sender: TObject);
     Procedure MenuItem2Click(Sender: TObject);
+    Procedure MenuItem4Click(Sender: TObject);
     Procedure MenuItem9Click(Sender: TObject);
     Procedure PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -67,6 +68,13 @@ Implementation
 Procedure TForm1.MenuItem2Click(Sender: TObject);
 Begin
   Application.Terminate;
+End;
+
+Procedure TForm1.MenuItem4Click(Sender: TObject);
+Begin
+  form1.Free;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
 End;
 
 Procedure TForm1.MenuItem9Click(Sender: TObject);
@@ -156,6 +164,39 @@ Begin
       PaintBox1.Canvas.Draw(n, p, bmBomb);
       bmBomb.Free;
       gameArray[i, j].Open := True;
+      If Timer1.Enabled = True Then
+      Begin
+        Timer1.Enabled := False;
+        ShowMessage('You Lost! You still had ' + label5.Caption);
+        MenuItem9.Checked := True;
+        Invalidate;
+        Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
+            [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
+          mrYes:
+          Begin
+            form1.Free;
+            Application.CreateForm(TForm1, Form1);
+            Application.Run;
+          End;
+          mrNo: Application.Terminate;
+        End;
+      End
+      Else
+      Begin
+        ShowMessage('You Lost!');
+        MenuItem9.Checked := True;
+        Invalidate;
+        Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
+            [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
+          mrYes:
+          Begin
+            form1.Free;
+            Application.CreateForm(TForm1, Form1);
+            Application.Run;
+          End;
+          mrNo: Application.Terminate;
+        End;
+      End;
     End
     Else If gameArray[i, j].counter = 0 Then
     Begin
@@ -168,7 +209,8 @@ Begin
     Begin
       PaintBox1.Canvas.Brush.Color := clWhite;
       PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
-      PaintBox1.Canvas.TextOut(n + 50 Div 2, p + 50 Div 3, IntToStr(gameArray[i, j].counter));
+      PaintBox1.Canvas.TextOut(n + 50 Div 2, p + 50 Div 3,
+        IntToStr(gameArray[i, j].counter));
       gameArray[i, j].Open := True;
     End;
   End;
