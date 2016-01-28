@@ -6,7 +6,7 @@ Interface
 
 Uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ExtCtrls, StdCtrls, ButtonPanel, Unit2;
+  ExtCtrls, StdCtrls, ButtonPanel, Unit2, Crt;
 
 Type
   TMine = Record
@@ -109,7 +109,7 @@ Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 Var
   bmFlag, bmBomb: TBitmap;
-  i, j, n, p, a, b: Integer;
+  i, j, n, p, a, b, flagcount, opencount: Integer;
 Begin
   If X Mod 50 = 0 Then
     i := X Div 50
@@ -168,34 +168,33 @@ Begin
       Begin
         Timer1.Enabled := False;
         ShowMessage('You Lost! You still had ' + label5.Caption);
-        MenuItem9.Checked := True;
-        Invalidate;
-        Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
-            [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
-          mrYes:
-          Begin
-            form1.Free;
-            Application.CreateForm(TForm1, Form1);
-            Application.Run;
-          End;
-          mrNo: Application.Terminate;
-        End;
       End
       Else
-      Begin
         ShowMessage('You Lost!');
-        MenuItem9.Checked := True;
-        Invalidate;
-        Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
-            [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
-          mrYes:
+      MenuItem9.Checked := True;
+      Repaint;
+      For a := 1 To 8 Do
+      Begin
+        For b := 1 To 8 Do
+        Begin
+          If gameArray[a, b].flag = True Then
           Begin
-            form1.Free;
-            Application.CreateForm(TForm1, Form1);
-            Application.Run;
+            bmFlag := TBitmap.Create;
+            bmFlag.LoadFromFile('flag.bmp');
+            PaintBox1.Canvas.Draw((a * 50) - 50 + 2, (b * 50) - 50 + 2, bmFlag);
+            bmFlag.Free;
           End;
-          mrNo: Application.Terminate;
         End;
+      End;
+      Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
+          [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
+        mrYes:
+        Begin
+          form1.Free;
+          Application.CreateForm(TForm1, Form1);
+          Application.Run;
+        End;
+        mrNo: Application.Terminate;
       End;
     End
     Else If gameArray[i, j].counter = 0 Then
@@ -212,6 +211,63 @@ Begin
       PaintBox1.Canvas.TextOut(n + 50 Div 2, p + 50 Div 3,
         IntToStr(gameArray[i, j].counter));
       gameArray[i, j].Open := True;
+    End;
+    flagcount := 0;
+    opencount := 0;
+    For a := 1 To 8 Do
+    Begin
+      For b := 1 To 8 Do
+      Begin
+        If gameArray[a, b].flag = True Then
+        Begin
+          flagcount := flagcount + 1;
+        End;
+      End;
+    End;
+    For a := 1 To 8 Do
+    Begin
+      For b := 1 To 8 Do
+      Begin
+        If gameArray[a, b].Open = False Then
+        Begin
+          opencount := opencount + 1;
+        End;
+      End;
+    End;
+    If opencount = flagcount Then
+    Begin
+      If Timer1.Enabled = True Then
+      Begin
+        Timer1.Enabled := False;
+        ShowMessage('You Won! And you still had left ' + Label5.Caption);
+      End
+      Else
+        ShowMessage('You Won!');
+      MenuItem9.Checked := True;
+      Repaint;
+      For a := 1 To 8 Do
+      Begin
+        For b := 1 To 8 Do
+        Begin
+          If gameArray[a, b].flag = True Then
+          Begin
+            bmFlag := TBitmap.Create;
+            bmFlag.LoadFromFile('flag.bmp');
+            PaintBox1.Canvas.Draw((a * 50) - 50 + 2, (b * 50) - 50 + 2, bmFlag);
+            bmFlag.Free;
+          End;
+        End;
+      End;
+      Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
+          [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
+        mrYes:
+        Begin
+          form1.Free;
+          Application.CreateForm(TForm1, Form1);
+          Application.Run;
+        End;
+        mrNo: Application.Terminate;
+      End;
     End;
   End;
 End;
@@ -382,7 +438,17 @@ Begin
   If Seconds = 0 Then
   Begin
     Timer1.Enabled := False;
-    ShowMessage('Time is up!');
+    ShowMessage('Time is up! You Lost!');
+    Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
+        [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
+      mrYes:
+      Begin
+        form1.Free;
+        Application.CreateForm(TForm1, Form1);
+        Application.Run;
+      End;
+      mrNo: Application.Terminate;
+    End;
   End
   Else
   Begin

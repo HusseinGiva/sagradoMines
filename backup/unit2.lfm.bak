@@ -1,7 +1,7 @@
 object Form2: TForm2
-  Left = 509
+  Left = 859
   Height = 239
-  Top = 374
+  Top = 86
   Width = 536
   Caption = 'About'
   ClientHeight = 239
@@ -10,9 +10,9 @@ object Form2: TForm2
   LCLVersion = '1.4.4.0'
   object Label1: TLabel
     Left = 32
-    Height = 16
+    Height = 15
     Top = 104
-    Width = 123
+    Width = 125
     Caption = 'Dummy Miss Games'
     Color = clWhite
     Font.Height = -13
@@ -36,9 +36,9 @@ object Form2: TForm2
   end
   object Label3: TLabel
     Left = 32
-    Height = 32
+    Height = 15
     Top = 176
-    Width = 116
+    Width = 56
     Caption = 'Version 1.0'
     ParentColor = False
   end
@@ -50,9 +50,9 @@ object Form2: TForm2
   end
   object Label4: TLabel
     Left = 32
-    Height = 32
+    Height = 15
     Top = 40
-    Width = 161
+    Width = 80
     Caption = 'Sagrado*Minas'
     ParentColor = False
   end
