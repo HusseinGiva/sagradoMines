@@ -43,6 +43,7 @@ Type
     Procedure MenuItem2Click(Sender: TObject);
     Procedure MenuItem4Click(Sender: TObject);
     Procedure MenuItem9Click(Sender: TObject);
+    Procedure CounterCells(i, j: Integer);
     Procedure PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     Procedure PaintBox1Paint(Sender: TObject);
@@ -79,28 +80,51 @@ End;
 
 Procedure TForm1.MenuItem9Click(Sender: TObject);
 Var
-  x, y: Integer;
+  i, j: Integer;
 Begin
   MenuItem9.Checked := Not MenuItem9.Checked;
   If MenuItem9.Checked = True Then
   Begin
-    For x := 1 To 8 Do
+    For i := 1 To 8 Do
     Begin
-      For y := 1 To 8 Do
+      For j := 1 To 8 Do
       Begin
-        gameArray[x, y].Open := True;
+        gameArray[i, j].Open := True;
       End;
     End;
   End
   Else If MenuItem9.Checked = False Then
   Begin
-    For x := 1 To 8 Do
+    For i := 1 To 8 Do
     Begin
-      For y := 1 To 8 Do
+      For j := 1 To 8 Do
       Begin
-        gameArray[x, y].Open := False;
+        gameArray[i, j].Open := False;
       End;
     End;
+  End;
+  Invalidate;
+End;
+
+Procedure TForm1.CounterCells(i, j: Integer);
+Var
+  m, n: Integer;
+Begin
+  If (gameArray[i, j].counter = 0) And (gameArray[i, j].Open = False) Then
+  Begin
+    gameArray[i, j].Open := True;
+    For m := -1 To 1 Do
+    Begin
+      For n := -1 To 1 Do
+      Begin
+        If (i + m >= 1) And (i + m <= 8) And (j + n >= 1) And (j + n <= 8) Then
+          CounterCells(i + m, j + n);
+      End;
+    End;
+  End
+  Else If (gameArray[i, j].counter <> 0) And (gameArray[i, j].Open = False) Then
+  Begin
+    gameArray[i, j].Open := True;
   End;
   Invalidate;
 End;
@@ -108,8 +132,7 @@ End;
 Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 Var
-  bmFlag, bmBomb: TBitmap;
-  i, j, n, p, a, b, flagcount, opencount: Integer;
+  i, j, a, b, flagcount, opencount: Integer;
 Begin
   If X Mod 50 = 0 Then
     i := X Div 50
@@ -131,21 +154,17 @@ Begin
     If (gameArray[i, j].flag = False) And (flags > 0) And
       (gameArray[i, j].Open = False) Then
     Begin
-      bmFlag := TBitmap.Create;
-      bmFlag.LoadFromFile('flag.bmp');
-      PaintBox1.Canvas.Draw(n + 2, p + 2, bmFlag);
       gameArray[i, j].flag := True;
-      bmFlag.Free;
       flags := flags - 1;
       Label4.Caption := IntToStr(flags);
+      Invalidate;
     End
-    Else If gameArray[i, j].flag = True Then
+    Else If (gameArray[i, j].flag = True) Then
     Begin
       gameArray[i, j].flag := False;
       flags := flags + 1;
       Label4.Caption := IntToStr(flags);
-      PaintBox1.Canvas.Brush.Color := clInactiveCaption;
-      PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
+      Invalidate;
     End;
   End
   Else If (ssLeft In Shift) And (gameArray[i, j].flag = False) Then
@@ -157,13 +176,8 @@ Begin
     CheckBox1.Visible := False;
     If gameArray[i, j].bomb = True Then
     Begin
-      PaintBox1.Canvas.Brush.Color := clWhite;
-      PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
-      bmBomb := TBitmap.Create;
-      bmBomb.LoadFromFile('bomb.bmp');
-      PaintBox1.Canvas.Draw(n, p, bmBomb);
-      bmBomb.Free;
       gameArray[i, j].Open := True;
+      Invalidate;
       If Timer1.Enabled = True Then
       Begin
         Timer1.Enabled := False;
@@ -171,21 +185,8 @@ Begin
       End
       Else
         ShowMessage('You Lost!');
-      MenuItem9.Checked := True;
-      Repaint;
-      For a := 1 To 8 Do
-      Begin
-        For b := 1 To 8 Do
-        Begin
-          If gameArray[a, b].flag = True Then
-          Begin
-            bmFlag := TBitmap.Create;
-            bmFlag.LoadFromFile('flag.bmp');
-            PaintBox1.Canvas.Draw((a * 50) - 50 + 2, (b * 50) - 50 + 2, bmFlag);
-            bmFlag.Free;
-          End;
-        End;
-      End;
+      MenuItem9Click(MenuItem9);
+      Invalidate;
       Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
           [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
         mrYes:
@@ -199,52 +200,8 @@ Begin
           Halt;
       End;
     End
-    Else If (gameArray[i, j].counter = 0) And (gameArray[i, j].Open = False) Then
-    Begin
-      PaintBox1.Canvas.Brush.Color := clWhite;
-      PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
-      gameArray[i, j].Open := True;
-      For a := -1 To 1 Do
-      Begin
-        For b := -1 To 1 Do
-        Begin
-          If (i + a >= 1) And (i + a <= 8) And (j + b >= 1) And (j + b <= 8) Then
-          Begin
-            If (gameArray[i + a, j + b].counter = 0) And
-              (gameArray[i + a, j + b].Open = False) And
-              (gameArray[i + a, j + b].flag = False) Then
-            Begin
-              PaintBox1.Canvas.Brush.Color := clWhite;
-              PaintBox1.Canvas.Rectangle((50 * (i + a) - 50) + 1,
-                (50 * (j + b) - 50) + 1, (50 * (i + a) - 50) + 50 -
-                1, (50 * (j + b) - 50) + 50 - 1);
-              gameArray[i + a, j + b].Open := True;
-
-            End
-            Else If (gameArray[i + a, j + b].Open = False) And
-              (gameArray[i + a, j + b].flag = False) Then
-            Begin
-              PaintBox1.Canvas.Brush.Color := clWhite;
-              PaintBox1.Canvas.Rectangle((50 * (i + a) - 50) + 1,
-                (50 * (j + b) - 50) + 1, (50 * (i + a) - 50) + 50 -
-                1, (50 * (j + b) - 50) + 50 - 1);
-              PaintBox1.Canvas.TextOut((50 * (i + a) - 50) + 50 Div 2,
-                (50 * (j + b) - 50) + 50 Div 3,
-                IntToStr(gameArray[i + a, j + b].counter));
-              gameArray[i + a, j + b].Open := True;
-            End;
-          End;
-        End;
-      End;
-    End
-    Else If (gameArray[i, j].counter <> 0) And (gameArray[i, j].Open = False) Then
-    Begin
-      PaintBox1.Canvas.Brush.Color := clWhite;
-      PaintBox1.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
-      PaintBox1.Canvas.TextOut(n + 50 Div 2, p + 50 Div 3,
-        IntToStr(gameArray[i, j].counter));
-      gameArray[i, j].Open := True;
-    End;
+    Else If ((gameArray[i, j].counter = 0) or (gameArray[i, j].counter <> 0)) And (gameArray[i, j].Open = False) Then
+    CounterCells(i,j);
     flagcount := 0;
     opencount := 0;
     For a := 1 To 8 Do
@@ -276,21 +233,8 @@ Begin
       End
       Else
         ShowMessage('You Won!');
-      MenuItem9.Checked := True;
-      Repaint;
-      For a := 1 To 8 Do
-      Begin
-        For b := 1 To 8 Do
-        Begin
-          If gameArray[a, b].flag = True Then
-          Begin
-            bmFlag := TBitmap.Create;
-            bmFlag.LoadFromFile('flag.bmp');
-            PaintBox1.Canvas.Draw((a * 50) - 50 + 2, (b * 50) - 50 + 2, bmFlag);
-            bmFlag.Free;
-          End;
-        End;
-      End;
+      MenuItem9Click(MenuItem9);
+      Invalidate;
       Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
           [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
         mrYes:
@@ -309,69 +253,69 @@ End;
 
 Procedure TForm1.FormCreate(Sender: TObject);
 Var
-  x, y, b, m, n: Integer;
+  i, j, b, m, n: Integer;
 Begin
   Seconds := 150;
   Timer1.Enabled := False;
   Label5.Caption := '02:30';
   flags := 10;
   b := 0;
-  For x := 1 To 8 Do  // Inicializa bombs false
+  For i := 1 To 8 Do  // Inicializa bombs false
   Begin
-    For y := 1 To 8 Do
+    For j := 1 To 8 Do
     Begin
-      gameArray[x, y].bomb := False;
+      gameArray[i, j].bomb := False;
     End;
   End;
   Repeat  // Coloca 10 bombs aleatoriamente
     Begin
       Randomize;
-      x := Random(9);
-      y := Random(9);
-      If Not gameArray[x, y].bomb And (x <> 0) And (y <> 0) Then
+      i := Random(9);
+      j := Random(9);
+      If Not gameArray[i, j].bomb And (i <> 0) And (j <> 0) Then
       Begin
-        gameArray[x, y].bomb := True;
+        gameArray[i, j].bomb := True;
         b := b + 1;
       End;
     End;
   Until b = 10;
-  For x := 1 To 8 Do  // Inicializa flag false
+  For i := 1 To 8 Do  // Inicializa flag false
   Begin
-    For y := 1 To 8 Do
+    For j := 1 To 8 Do
     Begin
-      gameArray[x, y].flag := False;
+      gameArray[i, j].flag := False;
     End;
   End;
-  For x := 1 To 8 Do  // Inicializa open false
+  For i := 1 To 8 Do  // Inicializa open false
   Begin
-    For y := 1 To 8 Do
+    For j := 1 To 8 Do
     Begin
-      gameArray[x, y].Open := False;
+      gameArray[i, j].Open := False;
     End;
   End;
-  For x := 1 To 8 Do  // Inicializa counters 0
+  For i := 1 To 8 Do  // Inicializa counters 0
   Begin
-    For y := 1 To 8 Do
+    For j := 1 To 8 Do
     Begin
-      If gameArray[x, y].bomb = True Then
+      If gameArray[i, j].bomb = True Then
       Else
-        gameArray[x, y].counter := 0;
+        gameArray[i, j].counter := 0;
     End;
   End;
-  For x := 1 To 8 Do  // colocar os counter nas casas sem bomba
+  For i := 1 To 8 Do  // colocar os counter nas casas sem bomba
   Begin
-    For y := 1 To 8 Do
+    For j := 1 To 8 Do
     Begin
-      If gameArray[x, y].bomb = True Then
-      Else If gameArray[x, y].bomb = False Then
+      If gameArray[i, j].bomb = True Then
+      Else If gameArray[i, j].bomb = False Then
       Begin
         For m := -1 To 1 Do
         Begin
           For n := -1 To 1 Do
           Begin
-            If (gameArray[x + m, y + n].bomb = True) And (x + m >= 1) And
-              (x + m <= 8) And (y + n >= 1) And (y + n <= 8) Then
-              gameArray[x, y].counter := gameArray[x, y].counter + 1;
+            If (gameArray[i + m, j + n].bomb = True) And (i + m >= 1) And
+              (i + m <= 8) And (j + n >= 1) And (j + n <= 8) Then
+              gameArray[i, j].counter := gameArray[i, j].counter + 1;
           End;
         End;
       End;
@@ -403,8 +347,8 @@ End;
 
 Procedure TForm1.PaintBox1Paint(Sender: TObject);
 Var
-  Bitmap, bmBomb: TBitmap;
-  rectangleHeight, rectangleWidth, i, j, n, p: Integer;
+  Bitmap, bmBomb, bmFlag: TBitmap;
+  i, j, n, p: Integer;
 Begin
   Bitmap := TBitmap.Create;
   // Initializes the Bitmap Size
@@ -419,9 +363,11 @@ Begin
   Begin
     For j := 1 To 8 Do
     Begin
+      n := (i * 50) - 50;
+      p := (j * 50) - 50;
       Bitmap.Canvas.Pen.Color := clBlack; //Line Color
       Bitmap.Canvas.Brush.Color := clInactiveCaption; //Brush color
-      Bitmap.Canvas.Rectangle((i*50)-50+1,(j*50)-50+1,(i*50)-1,(j*50)-1);
+      Bitmap.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
       //Write some text, in this case an *
       //Define Font properties
       Bitmap.Canvas.Font.Name := 'Liberation Mono';
@@ -429,31 +375,37 @@ Begin
       Bitmap.Canvas.Font.Size := 10;
       Bitmap.Canvas.Font.Color := clBlack;
       //Write the text
-      If gameArray[i, j].bomb And MenuItem9.Checked Then
+      If (gameArray[i, j].bomb = True) And (gameArray[i, j].Open = True) Then
       Begin
         Bitmap.Canvas.Brush.Color := clWhite;
-        Bitmap.Canvas.Rectangle(i * rectangleWidth + 1, j * rectangleHeight + 1,
-          i * rectangleWidth + rectangleWidth - 1, j * rectangleHeight +
-          rectangleHeight - 1);
+        Bitmap.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
         bmBomb := TBitmap.Create;
         bmBomb.LoadFromFile('bomb.bmp');
-        n := 50 * i;
-        p := 50 * j;
         Bitmap.Canvas.Draw(n, p, bmBomb);
         bmBomb.Free;
-        gameArray[i + 1, j + 1].Open := True;
       End
-      Else If MenuItem9.Checked Then
+      Else If ((gameArray[i, j].counter <> 0) Or (gameArray[i, j].counter = 0)) And
+        (gameArray[i, j].Open = True) Then
       Begin
         Bitmap.Canvas.Brush.Color := clWhite;
-        Bitmap.Canvas.Rectangle(i * rectangleWidth + 1, j * rectangleHeight + 1,
-          i * rectangleWidth + rectangleWidth - 1, j * rectangleHeight +
-          rectangleHeight - 1);
-        If gameArray[i + 1, j + 1].counter <> 0 Then
-          Bitmap.Canvas.TextOut(i * rectangleWidth + rectangleWidth Div
-            2, j * rectangleHeight + rectangleHeight Div 3,
-            IntToStr(gameArray[i + 1, j + 1].counter));
-        gameArray[i + 1, j + 1].Open := True;
+        Bitmap.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
+        If gameArray[i, j].counter <> 0 Then
+          Bitmap.Canvas.TextOut(n + 50 Div 2, p + 50 Div 3,
+            IntToStr(gameArray[i, j].counter));
+      End
+      Else If (gameArray[i, j].flag = True) And (gameArray[i, j].Open = False) Then
+      Begin
+        bmFlag := TBitmap.Create;
+        bmFlag.LoadFromFile('flag.bmp');
+        Bitmap.Canvas.Draw(n, p, bmFlag);
+        bmFlag.Free;
+      End;
+      If (gameArray[i, j].flag = True) And (gameArray[i, j].Open = True) Then
+      Begin
+        bmFlag := TBitmap.Create;
+        bmFlag.LoadFromFile('flag.bmp');
+        Bitmap.Canvas.Draw(n, p, bmFlag);
+        bmFlag.Free;
       End;
 
     End;
