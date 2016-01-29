@@ -1,10 +1,10 @@
 object Form1: TForm1
-  Left = 543
+  Left = 614
   Height = 504
-  Top = 237
+  Top = 214
   Width = 718
   Caption = 'Sagrado*Minas'
-  ClientHeight = 465
+  ClientHeight = 504
   ClientWidth = 718
   Menu = MainMenu1
   OnCreate = FormCreate
@@ -37,7 +37,7 @@ object Form1: TForm1
     Left = 616
     Height = 28
     Top = 80
-    Width = 24
+    Width = 23
     Caption = '10'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -65,7 +65,7 @@ object Form1: TForm1
     Left = 616
     Height = 28
     Top = 168
-    Width = 24
+    Width = 23
     Caption = '10'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -79,7 +79,7 @@ object Form1: TForm1
     Left = 496
     Height = 28
     Top = 272
-    Width = 59
+    Width = 60
     Caption = 'Timer:'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -23
@@ -107,9 +107,9 @@ object Form1: TForm1
   end
   object CheckBox1: TCheckBox
     Left = 496
-    Height = 36
+    Height = 18
     Top = 240
-    Width = 97
+    Width = 55
     Caption = 'Timer'
     OnChange = CheckBox1Change
     TabOrder = 0

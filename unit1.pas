@@ -415,17 +415,13 @@ Begin
   Bitmap.Canvas.Brush.Color := clWhite; //Fill Color
   Bitmap.Canvas.Rectangle(0, 0, PaintBox1.Width, PaintBox1.Height);
   // Draws squares
-  For i := 0 To 7 Do
+  For i := 1 To 8 Do
   Begin
-    For j := 0 To 7 Do
+    For j := 1 To 8 Do
     Begin
       Bitmap.Canvas.Pen.Color := clBlack; //Line Color
       Bitmap.Canvas.Brush.Color := clInactiveCaption; //Brush color
-      rectangleHeight := 50;
-      rectangleWidth := 50;
-      Bitmap.Canvas.Rectangle(i * rectangleWidth + 1, j * rectangleHeight + 1,
-        i * rectangleWidth + rectangleWidth - 1, j * rectangleHeight +
-        rectangleHeight - 1);
+      Bitmap.Canvas.Rectangle((i * 50) - 50 + 1, (j * 50) - 50 + 1, (i * 50) - 1, (j * 50) - 1);
       //Write some text, in this case an *
       //Define Font properties
       Bitmap.Canvas.Font.Name := 'Liberation Mono';
@@ -433,33 +429,27 @@ Begin
       Bitmap.Canvas.Font.Size := 10;
       Bitmap.Canvas.Font.Color := clBlack;
       //Write the text
-      If gameArray[i + 1, j + 1].bomb And MenuItem9.Checked Then
+      If gameArray[i, j].bomb And MenuItem9.Checked Then
       Begin
         Bitmap.Canvas.Brush.Color := clWhite;
-        Bitmap.Canvas.Rectangle(i * rectangleWidth + 1, j * rectangleHeight + 1,
-          i * rectangleWidth + rectangleWidth - 1, j * rectangleHeight +
-          rectangleHeight - 1);
+        Bitmap.Canvas.Rectangle((i * 50) - 50 + 1, (j * 50) - 50 + 1, (i * 50) - 1, (j * 50) - 1);
         bmBomb := TBitmap.Create;
         bmBomb.LoadFromFile('bomb.bmp');
         n := 50 * i;
         p := 50 * j;
         Bitmap.Canvas.Draw(n, p, bmBomb);
         bmBomb.Free;
-        gameArray[i + 1, j + 1].Open := True;
+        gameArray[i, j].Open := True;
       End
       Else If MenuItem9.Checked Then
       Begin
         Bitmap.Canvas.Brush.Color := clWhite;
-        Bitmap.Canvas.Rectangle(i * rectangleWidth + 1, j * rectangleHeight + 1,
-          i * rectangleWidth + rectangleWidth - 1, j * rectangleHeight +
-          rectangleHeight - 1);
-        If gameArray[i + 1, j + 1].counter <> 0 Then
-          Bitmap.Canvas.TextOut(i * rectangleWidth + rectangleWidth Div
-            2, j * rectangleHeight + rectangleHeight Div 3,
-            IntToStr(gameArray[i + 1, j + 1].counter));
-        gameArray[i + 1, j + 1].Open := True;
+        Bitmap.Canvas.Rectangle((i * 50) - 50 + 1, (j * 50) - 50 + 1, (i * 50) - 1, (j * 50) - 1);
+        If gameArray[i, j].counter <> 0 Then
+          Bitmap.Canvas.TextOut((i * 50) + 50 Div 2, (j * 50) + 50 Div 3,
+            IntToStr(gameArray[i, j].counter));
+        gameArray[i, j].Open := True;
       End;
-
     End;
   End;
   PaintBox1.Canvas.Draw(0, 0, Bitmap);
