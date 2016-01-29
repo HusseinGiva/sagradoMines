@@ -142,8 +142,6 @@ Begin
     j := Y Div 50
   Else
     j := (Y Div 50) + 1;
-  n := (50 * i) - 50;
-  p := (50 * j) - 50;
   If (ssRight In Shift) Then
   Begin
     If Label5.Visible = True Then
@@ -200,8 +198,9 @@ Begin
           Halt;
       End;
     End
-    Else If ((gameArray[i, j].counter = 0) or (gameArray[i, j].counter <> 0)) And (gameArray[i, j].Open = False) Then
-    CounterCells(i,j);
+    Else If ((gameArray[i, j].counter = 0) Or (gameArray[i, j].counter <> 0)) And
+      (gameArray[i, j].Open = False) Then
+      CounterCells(i, j);
     flagcount := 0;
     opencount := 0;
     For a := 1 To 8 Do

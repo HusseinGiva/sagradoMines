@@ -198,8 +198,9 @@ Begin
           Halt;
       End;
     End
-    Else If ((gameArray[i, j].counter = 0) or (gameArray[i, j].counter <> 0)) And (gameArray[i, j].Open = False) Then
-    CounterCells(i,j);
+    Else If ((gameArray[i, j].counter = 0) Or (gameArray[i, j].counter <> 0)) And
+      (gameArray[i, j].Open = False) Then
+      CounterCells(i, j);
     flagcount := 0;
     opencount := 0;
     For a := 1 To 8 Do
