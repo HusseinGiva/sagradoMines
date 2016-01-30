@@ -10,7 +10,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="1"/>
         <CursorPos X="3" Y="19"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="60"/>
       </Unit0>
       <Unit1>
         <Filename Value="unit1.pas"/>
@@ -21,8 +21,10 @@
         <UnitName Value="Unit1"/>
         <IsVisibleTab Value="True"/>
         <WindowIndex Value="1"/>
-        <FoldState Value=" T4602 TCBA3 T7JBa T3iP034 pkglC0/3 pifkY0Wa"/>
-        <UsageCount Value="58"/>
+        <TopLine Value="66"/>
+        <CursorPos X="14" Y="76"/>
+        <FoldState Value=" T4602 TCBA3 T7JBa T3iP03013 plfmF0/]9ifkY0Yh"/>
+        <UsageCount Value="60"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -36,7 +38,7 @@
         <EditorIndex Value="1"/>
         <WindowIndex Value="1"/>
         <CursorPos X="26" Y="20"/>
-        <UsageCount Value="57"/>
+        <UsageCount Value="59"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit2>

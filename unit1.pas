@@ -31,7 +31,6 @@ Type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
-    MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
     MenuItem8: TMenuItem;
     MenuItem9: TMenuItem;
@@ -110,7 +109,8 @@ Procedure TForm1.CounterCells(i, j: Integer);
 Var
   m, n: Integer;
 Begin
-  If (gameArray[i, j].counter = 0) And (gameArray[i, j].Open = False) Then
+  If (gameArray[i, j].counter = 0) And (gameArray[i, j].Open = False) And
+    (gameArray[i, j].flag = False) Then
   Begin
     gameArray[i, j].Open := True;
     For m := -1 To 1 Do
@@ -156,6 +156,52 @@ Begin
       flags := flags - 1;
       Label4.Caption := IntToStr(flags);
       Invalidate;
+      flagcount := 0;
+      opencount := 0;
+      For a := 1 To 8 Do
+      Begin
+        For b := 1 To 8 Do
+        Begin
+          If gameArray[a, b].flag = True Then
+          Begin
+            flagcount := flagcount + 1;
+          End;
+        End;
+      End;
+      For a := 1 To 8 Do
+      Begin
+        For b := 1 To 8 Do
+        Begin
+          If gameArray[a, b].Open = False Then
+          Begin
+            opencount := opencount + 1;
+          End;
+        End;
+      End;
+      If opencount = flagcount Then
+      Begin
+        If Timer1.Enabled = True Then
+        Begin
+          Timer1.Enabled := False;
+          ShowMessage('You Won! And you still had left ' + Label5.Caption);
+        End
+        Else
+          ShowMessage('You Won!');
+        MenuItem9Click(MenuItem9);
+        Invalidate;
+        Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
+            [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
+          mrYes:
+          Begin
+            form1.Free;
+            Application.CreateForm(TForm1, Form1);
+            Application.Run;
+          End;
+          mrNo: Halt;
+          Else
+            Halt;
+        End;
+      End;
     End
     Else If (gameArray[i, j].flag = True) Then
     Begin
@@ -421,6 +467,8 @@ Begin
   Begin
     Timer1.Enabled := False;
     ShowMessage('Time is up! You Lost!');
+    MenuItem9Click(MenuItem9);
+    Invalidate;
     Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
         [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
       mrYes:

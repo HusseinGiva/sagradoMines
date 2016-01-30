@@ -130,9 +130,6 @@ object Form1: TForm1
         Caption = 'New'
         OnClick = MenuItem4Click
       end
-      object MenuItem6: TMenuItem
-        Caption = 'Color'
-      end
     end
     object MenuItem7: TMenuItem
       Caption = 'View'
