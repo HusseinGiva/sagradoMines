@@ -6,7 +6,7 @@ Interface
 
 Uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ExtCtrls, StdCtrls, ButtonPanel, Unit2, Crt;
+  ExtCtrls, StdCtrls, Unit2, Crt;
 
 Type
   TMine = Record

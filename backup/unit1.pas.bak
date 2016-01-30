@@ -6,7 +6,7 @@ Interface
 
 Uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ExtCtrls, StdCtrls, ButtonPanel, Unit2, Crt;
+  ExtCtrls, StdCtrls, Unit2, Crt;
 
 Type
   TMine = Record
@@ -31,7 +31,6 @@ Type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
-    MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
     MenuItem8: TMenuItem;
     MenuItem9: TMenuItem;
@@ -44,8 +43,7 @@ Type
     Procedure MenuItem4Click(Sender: TObject);
     Procedure MenuItem9Click(Sender: TObject);
     Procedure CounterCells(i, j: Integer);
-    Procedure PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    Procedure PaintBox1MouseDown(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     Procedure PaintBox1Paint(Sender: TObject);
     Procedure Timer1Timer(Sender: TObject);
 
