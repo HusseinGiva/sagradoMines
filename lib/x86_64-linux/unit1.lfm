@@ -1,10 +1,10 @@
 object Form1: TForm1
-  Left = 1120
-  Height = 468
-  Top = 266
+  Left = 1092
+  Height = 472
+  Top = 171
   Width = 718
   Caption = 'Sagrado*Minas'
-  ClientHeight = 445
+  ClientHeight = 449
   ClientWidth = 718
   Menu = MainMenu1
   OnCreate = FormCreate
@@ -34,7 +34,7 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 616
+    Left = 632
     Height = 28
     Top = 80
     Width = 30
@@ -62,7 +62,7 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 616
+    Left = 632
     Height = 28
     Top = 168
     Width = 30
@@ -128,15 +128,14 @@ object Form1: TForm1
       Caption = 'Game'
       object MenuItem4: TMenuItem
         Caption = 'New'
-      end
-      object MenuItem6: TMenuItem
-        Caption = 'Color'
+        OnClick = MenuItem4Click
       end
     end
     object MenuItem7: TMenuItem
       Caption = 'View'
       object MenuItem9: TMenuItem
         Caption = 'Reveal'
+        OnClick = MenuItem9Click
       end
     end
     object MenuItem8: TMenuItem

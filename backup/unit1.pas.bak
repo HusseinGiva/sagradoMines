@@ -6,7 +6,7 @@ Interface
 
 Uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ExtCtrls, StdCtrls, Unit2, Crt;
+  ExtCtrls, StdCtrls, Unit2, Crt, DefaultTranslator;
 
 Type
   TMine = Record
@@ -43,7 +43,9 @@ Type
     Procedure MenuItem4Click(Sender: TObject);
     Procedure MenuItem9Click(Sender: TObject);
     Procedure CounterCells(i, j: Integer);
-    Procedure PaintBox1MouseDown(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    Procedure NewGame();
+    Procedure PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     Procedure PaintBox1Paint(Sender: TObject);
     Procedure Timer1Timer(Sender: TObject);
 
@@ -58,6 +60,17 @@ Var
   gameArray: TArray;
   Seconds, flags: Integer;
 
+Resourcestring
+  wonTime = 'You Won! And you still had left ';
+  won = 'You Won!';
+  playAgain = 'Want to play again?';
+  yes = 'Yes';
+  no = 'No';
+  lostTime = 'You Lost! You still had ';
+  lost = 'You Lost!';
+  timesUp = 'Time is up! You Lost!';
+
+
 Implementation
 
 {$R *.lfm}
@@ -71,9 +84,7 @@ End;
 
 Procedure TForm1.MenuItem4Click(Sender: TObject);
 Begin
-  form1.Free;
-  Application.CreateForm(TForm1, Form1);
-  Application.Run;
+  NewGame();
 End;
 
 Procedure TForm1.MenuItem9Click(Sender: TObject);
@@ -182,14 +193,14 @@ Begin
         If Timer1.Enabled = True Then
         Begin
           Timer1.Enabled := False;
-          ShowMessage('You Won! And you still had left ' + Label5.Caption);
+          ShowMessage(wonTime + Label5.Caption);
         End
         Else
-          ShowMessage('You Won!');
+          ShowMessage(won);
         MenuItem9Click(MenuItem9);
         Invalidate;
-        Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
-            [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
+        Case QuestionDlg('playAgain', playAgain, mtCustom,
+            [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
           mrYes:
           Begin
             form1.Free;
@@ -224,14 +235,14 @@ Begin
       If Timer1.Enabled = True Then
       Begin
         Timer1.Enabled := False;
-        ShowMessage('You Lost! You still had ' + label5.Caption);
+        ShowMessage(lostTime + label5.Caption);
       End
       Else
-        ShowMessage('You Lost!');
+        ShowMessage(lost);
       MenuItem9Click(MenuItem9);
       Invalidate;
-      Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
-          [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
+      Case QuestionDlg('playAgain', playAgain, mtCustom,
+          [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
         mrYes:
         Begin
           form1.Free;
@@ -273,14 +284,14 @@ Begin
       If Timer1.Enabled = True Then
       Begin
         Timer1.Enabled := False;
-        ShowMessage('You Won! And you still had left ' + Label5.Caption);
+        ShowMessage(wonTime + Label5.Caption);
       End
       Else
-        ShowMessage('You Won!');
+        ShowMessage(won);
       MenuItem9Click(MenuItem9);
       Invalidate;
-      Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
-          [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
+      Case QuestionDlg('playAgain', playAgain, mtCustom,
+          [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
         mrYes:
         Begin
           form1.Free;
@@ -295,7 +306,7 @@ Begin
   End;
 End;
 
-Procedure TForm1.FormCreate(Sender: TObject);
+Procedure TForm1.NewGame();
 Var
   i, j, b, m, n: Integer;
 Begin
@@ -309,6 +320,8 @@ Begin
     For j := 1 To 8 Do
     Begin
       gameArray[i, j].bomb := False;
+      gameArray[i, j].flag := False;
+      gameArray[i, j].Open := False;
     End;
   End;
   Repeat  // Coloca 10 bombs aleatoriamente
@@ -316,27 +329,13 @@ Begin
       Randomize;
       i := Random(9);
       j := Random(9);
-      If Not gameArray[i, j].bomb And (i <> 0) And (j <> 0) Then
+      If (gameArray[i, j].bomb=False) And (i <> 0) And (j <> 0) Then
       Begin
         gameArray[i, j].bomb := True;
         b := b + 1;
       End;
     End;
   Until b = 10;
-  For i := 1 To 8 Do  // Inicializa flag false
-  Begin
-    For j := 1 To 8 Do
-    Begin
-      gameArray[i, j].flag := False;
-    End;
-  End;
-  For i := 1 To 8 Do  // Inicializa open false
-  Begin
-    For j := 1 To 8 Do
-    Begin
-      gameArray[i, j].Open := False;
-    End;
-  End;
   For i := 1 To 8 Do  // Inicializa counters 0
   Begin
     For j := 1 To 8 Do
@@ -366,6 +365,12 @@ Begin
     End;
   End;
   MenuItem9.Checked := False;
+  Invalidate;
+End;
+
+Procedure TForm1.FormCreate(Sender: TObject);
+Begin
+  NewGame();
 End;
 
 Procedure TForm1.CheckBox1Change(Sender: TObject);
@@ -465,11 +470,11 @@ Begin
   If Seconds = 0 Then
   Begin
     Timer1.Enabled := False;
-    ShowMessage('Time is up! You Lost!');
+    ShowMessage(timesUp);
     MenuItem9Click(MenuItem9);
     Invalidate;
-    Case QuestionDlg('playAgain', 'Want to play again?', mtCustom,
-        [mrNo, 'No', mrYes, 'Yes', 'IsDefault'], '') Of
+    Case QuestionDlg('playAgain', playAgain, mtCustom,
+        [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
       mrYes:
       Begin
         form1.Free;

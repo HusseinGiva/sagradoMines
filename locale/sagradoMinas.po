@@ -96,3 +96,35 @@ msgstr ""
 msgid "Form3"
 msgstr ""
 
+#: unit1.lost
+msgid "You Lost!"
+msgstr ""
+
+#: unit1.losttime
+msgid "You Lost! You still had "
+msgstr ""
+
+#: unit1.no
+msgid "No"
+msgstr ""
+
+#: unit1.playagain
+msgid "Want to play again?"
+msgstr ""
+
+#: unit1.timesup
+msgid "Time is up! You Lost!"
+msgstr ""
+
+#: unit1.won
+msgid "You Won!"
+msgstr ""
+
+#: unit1.wontime
+msgid "You Won! And you still had left "
+msgstr ""
+
+#: unit1.yes
+msgid "Yes"
+msgstr ""
+
