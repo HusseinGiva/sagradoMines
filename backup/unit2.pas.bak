@@ -1,37 +1,48 @@
-unit Unit2;
+Unit Unit2;
 
 {$mode objfpc}{$H+}
 
-interface
+Interface
 
-uses
+Uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls;
 
-type
+Type
 
   { TForm2 }
 
-  TForm2 = class(TForm)
+  TForm2 = Class(TForm)
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     PaintBox1: TPaintBox;
-  private
+    Procedure PaintBox1Paint(Sender: TObject);
+  Private
     { private declarations }
-  public
+  Public
     { public declarations }
-  end;
+  End;
 
-var
+Var
   Form2: TForm2;
 
-implementation
+Implementation
 
 {$R *.lfm}
 
 { TForm2 }
 
-end.
+Procedure TForm2.PaintBox1Paint(Sender: TObject);     // ACABAR
+Var
+  bmLogo: TBitmap;
+Begin
+  bmLogo := TBitmap.Create;
+  bmLogo.LoadFromFile('logo.bmp');
+  PaintBox1.Canvas.Draw(0, 0, bmLogo);
+  bmLogo.Free;
+End;
+
+End.
 

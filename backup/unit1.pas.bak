@@ -203,9 +203,7 @@ Begin
             [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
           mrYes:
           Begin
-            form1.Free;
-            Application.CreateForm(TForm1, Form1);
-            Application.Run;
+            NewGame();
           End;
           mrNo: Halt;
           Else
@@ -245,9 +243,7 @@ Begin
           [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
         mrYes:
         Begin
-          form1.Free;
-          Application.CreateForm(TForm1, Form1);
-          Application.Run;
+          NewGame();
         End;
         mrNo: Halt;
         Else
@@ -294,9 +290,7 @@ Begin
           [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
         mrYes:
         Begin
-          form1.Free;
-          Application.CreateForm(TForm1, Form1);
-          Application.Run;
+          NewGame();
         End;
         mrNo: Halt;
         Else
@@ -310,6 +304,7 @@ Procedure TForm1.NewGame();
 Var
   i, j, b, m, n: Integer;
 Begin
+  Randomize;
   Seconds := 150;
   Timer1.Enabled := False;
   Label5.Caption := '02:30';
@@ -326,10 +321,9 @@ Begin
   End;
   Repeat  // Coloca 10 bombs aleatoriamente
     Begin
-      Randomize;
       i := Random(9);
       j := Random(9);
-      If (gameArray[i, j].bomb=False) And (i <> 0) And (j <> 0) Then
+      If (gameArray[i, j].bomb = False) And (i <> 0) And (j <> 0) Then
       Begin
         gameArray[i, j].bomb := True;
         b := b + 1;
@@ -477,9 +471,7 @@ Begin
         [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
       mrYes:
       Begin
-        form1.Free;
-        Application.CreateForm(TForm1, Form1);
-        Application.Run;
+        NewGame();
       End;
       mrNo: Halt;
       Else

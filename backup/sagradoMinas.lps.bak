@@ -7,12 +7,10 @@
       <Unit0>
         <Filename Value="sagradoMinas.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
         <WindowIndex Value="1"/>
         <TopLine Value="1"/>
         <CursorPos X="3" Y="17"/>
-        <UsageCount Value="63"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="65"/>
       </Unit0>
       <Unit1>
         <Filename Value="unit1.pas"/>
@@ -21,14 +19,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="1"/>
-        <TopLine Value="80"/>
-        <CursorPos X="71" Y="332"/>
-        <FoldState Value=" TCBA3 T3ia03414 pj1pg0Yn"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="63"/>
+        <TopLine Value="421"/>
+        <CursorPos X="1" Y="142"/>
+        <FoldState Value=" TCBA3 T7JBa T3ia034 plcm80y311:"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -39,11 +35,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit2"/>
-        <EditorIndex Value="2"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="1"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="62"/>
+        <TopLine Value="14"/>
+        <CursorPos X="8" Y="43"/>
+        <UsageCount Value="64"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit2>
@@ -66,7 +63,7 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="4" HistoryIndex="3">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
         <Filename Value="unit1.pas"/>
         <Caret Line="300" Column="24" TopLine="55"/>
@@ -83,6 +80,14 @@
         <Filename Value="unit1.pas"/>
         <Caret Line="70" Column="10" TopLine="20"/>
       </Position4>
+      <Position5>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position5>
+      <Position6>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="44" Column="15" TopLine="14"/>
+      </Position6>
     </JumpHistory>
   </ProjectSession>
   <EditorMacros Count="0"/>

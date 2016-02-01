@@ -203,9 +203,7 @@ Begin
             [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
           mrYes:
           Begin
-            form1.Free;
-            Application.CreateForm(TForm1, Form1);
-            Application.Run;
+            NewGame();
           End;
           mrNo: Halt;
           Else
@@ -245,9 +243,7 @@ Begin
           [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
         mrYes:
         Begin
-          form1.Free;
-          Application.CreateForm(TForm1, Form1);
-          Application.Run;
+          NewGame();
         End;
         mrNo: Halt;
         Else
@@ -294,9 +290,7 @@ Begin
           [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
         mrYes:
         Begin
-          form1.Free;
-          Application.CreateForm(TForm1, Form1);
-          Application.Run;
+          NewGame();
         End;
         mrNo: Halt;
         Else
@@ -456,7 +450,6 @@ Begin
         Bitmap.Canvas.Draw(n, p, bmFlag);
         bmFlag.Free;
       End;
-
     End;
   End;
   PaintBox1.Canvas.Draw(0, 0, Bitmap);
@@ -477,9 +470,7 @@ Begin
         [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
       mrYes:
       Begin
-        form1.Free;
-        Application.CreateForm(TForm1, Form1);
-        Application.Run;
+        NewGame();
       End;
       mrNo: Halt;
       Else

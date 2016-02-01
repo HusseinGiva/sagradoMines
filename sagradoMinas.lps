@@ -10,7 +10,7 @@
         <WindowIndex Value="1"/>
         <TopLine Value="1"/>
         <CursorPos X="3" Y="17"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="65"/>
       </Unit0>
       <Unit1>
         <Filename Value="unit1.pas"/>
@@ -24,9 +24,8 @@
         <WindowIndex Value="1"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <FoldState Value=" TCBA3 T7JBa T3ia034 pm1mE0y]9j1kS0Y8"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="64"/>
+        <FoldState Value=" T4602 TCBA3 T7JBa T3ia034 plcm80y]9j0kR0W^"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -41,7 +40,8 @@
         <WindowIndex Value="1"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="63"/>
+        <FoldState Value=" T7EBB T8L211 T3a08o"/>
+        <UsageCount Value="64"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit2>
@@ -64,7 +64,7 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="4" HistoryIndex="3">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
         <Filename Value="unit1.pas"/>
         <Caret Line="300" Column="24" TopLine="55"/>
@@ -81,6 +81,14 @@
         <Filename Value="unit1.pas"/>
         <Caret Line="70" Column="10" TopLine="20"/>
       </Position4>
+      <Position5>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position5>
+      <Position6>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="44" Column="15" TopLine="14"/>
+      </Position6>
     </JumpHistory>
   </ProjectSession>
   <EditorMacros Count="0"/>
