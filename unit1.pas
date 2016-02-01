@@ -307,6 +307,8 @@ Begin
   Randomize;
   Seconds := 150;
   Timer1.Enabled := False;
+  CheckBox1.Visible := True;
+  CheckBox1.Checked := False;
   Label5.Caption := '02:30';
   flags := 10;
   b := 0;

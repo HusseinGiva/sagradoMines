@@ -34,7 +34,7 @@ Implementation
 
 { TForm2 }
 
-Procedure TForm2.PaintBox1Paint(Sender: TObject);     // ACABAR
+Procedure TForm2.PaintBox1Paint(Sender: TObject);
 Var
   bmLogo: TBitmap;
 Begin
@@ -45,4 +45,3 @@ Begin
 End;
 
 End.
-
