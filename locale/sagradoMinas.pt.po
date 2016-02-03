@@ -8,7 +8,8 @@ msgstr ""
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.7\n"
+"Language: pt\n"
 
 #: tform1.caption
 msgctxt "tform1.caption"
@@ -121,6 +122,10 @@ msgstr "Não"
 msgid "Want to play again?"
 msgstr "Queres jogar novamente?"
 
+#: unit1.playagaincap
+msgid "Play Again"
+msgstr "Jogar Novamente"
+
 #: unit1.timesup
 msgid "Time is up! You Lost!"
 msgstr "Acabou o tempo! Perdeste"
@@ -136,4 +141,3 @@ msgstr "Ganhaste! E ainda tinhas "
 #: unit1.yes
 msgid "Yes"
 msgstr "Sim"
-

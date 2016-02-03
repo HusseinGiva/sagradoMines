@@ -64,6 +64,7 @@ Resourcestring
   wonTime = 'You Won! And you still had left ';
   won = 'You Won!';
   playAgain = 'Want to play again?';
+  playAgainCap = 'Play Again';
   yes = 'Yes';
   no = 'No';
   lostTime = 'You Lost! You still had ';
@@ -199,7 +200,7 @@ Begin
           ShowMessage(won);
         MenuItem9Click(MenuItem9);        //Reveal board to show to the player who lost
         Invalidate;
-        Case QuestionDlg('playAgain', playAgain, mtCustom,           //Ask if the player wants to play again
+        Case QuestionDlg(playAgainCap, playAgain, mtCustom,           //Ask if the player wants to play again
             [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
           mrYes:
           Begin
@@ -239,7 +240,7 @@ Begin
         ShowMessage(lost);
       MenuItem9Click(MenuItem9);            //Reveal board to show to the player who lost
       Invalidate;
-      Case QuestionDlg('playAgain', playAgain, mtCustom,          //Ask if the player wants to play again
+      Case QuestionDlg(playAgainCap, playAgain, mtCustom,          //Ask if the player wants to play again
           [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
         mrYes:
         Begin
@@ -286,7 +287,7 @@ Begin
         ShowMessage(won);
       MenuItem9Click(MenuItem9);                 //Reveal board to show to the player who lost
       Invalidate;
-      Case QuestionDlg('playAgain', playAgain, mtCustom,       //Ask if the player wants to play again
+      Case QuestionDlg(playAgainCap, playAgain, mtCustom,       //Ask if the player wants to play again
           [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
         mrYes:
         Begin
@@ -466,7 +467,7 @@ Begin
     ShowMessage(timesUp);
     MenuItem9Click(MenuItem9);    //enable reveal to  show the whole board
     Invalidate;
-    Case QuestionDlg('Play Again', playAgain, mtCustom,     //Ask if the player wants to play again
+    Case QuestionDlg(playAgainCap, playAgain, mtCustom,     //Ask if the player wants to play again
         [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
       mrYes:
       Begin

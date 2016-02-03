@@ -112,6 +112,10 @@ msgstr ""
 msgid "Want to play again?"
 msgstr ""
 
+#: unit1.playagaincap
+msgid "Play Again"
+msgstr ""
+
 #: unit1.timesup
 msgid "Time is up! You Lost!"
 msgstr ""

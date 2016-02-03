@@ -154,12 +154,12 @@ Begin
     j := (Y Div 50) + 1;
   If (ssRight In Shift) Then
   Begin
-    If Label5.Visible = True Then
+    If Label5.Visible = True Then        //Start timer if label is visible
     Begin
       Timer1.Enabled := True;
     End;
     CheckBox1.Visible := False;
-    If (gameArray[i, j].flag = False) And (flags > 0) And
+    If (gameArray[i, j].flag = False) And (flags > 0) And            //place flag
       (gameArray[i, j].open = False) Then
     Begin
       gameArray[i, j].flag := True;
@@ -192,14 +192,14 @@ Begin
       Begin
         If Timer1.Enabled = True Then
         Begin
-          Timer1.Enabled := False;
+          Timer1.Enabled := False;                   //Stop the timer
           ShowMessage(wonTime + Label5.Caption);
         End
         Else
           ShowMessage(won);
-        MenuItem9Click(MenuItem9);
+        MenuItem9Click(MenuItem9);        //Reveal board to show to the player who lost
         Invalidate;
-        Case QuestionDlg('playAgain', playAgain, mtCustom,
+        Case QuestionDlg('playAgain', playAgain, mtCustom,           //Ask if the player wants to play again
             [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
           mrYes:
           Begin
@@ -211,7 +211,7 @@ Begin
         End;
       End;
     End
-    Else If (gameArray[i, j].flag = True) Then
+    Else If (gameArray[i, j].flag = True) Then                        //remove flag
     Begin
       gameArray[i, j].flag := False;
       flags := flags + 1;
@@ -221,7 +221,7 @@ Begin
   End
   Else If (ssLeft In Shift) And (gameArray[i, j].flag = False) Then
   Begin
-    If Label5.Visible = True Then
+    If Label5.Visible = True Then              //Start the timer
     Begin
       Timer1.Enabled := True;
     End;
@@ -232,14 +232,14 @@ Begin
       Invalidate;
       If Timer1.Enabled = True Then
       Begin
-        Timer1.Enabled := False;
+        Timer1.Enabled := False;                     //Stop the timer
         ShowMessage(lostTime + label5.Caption);
       End
       Else
         ShowMessage(lost);
-      MenuItem9Click(MenuItem9);
+      MenuItem9Click(MenuItem9);            //Reveal board to show to the player who lost
       Invalidate;
-      Case QuestionDlg('playAgain', playAgain, mtCustom,
+      Case QuestionDlg('playAgain', playAgain, mtCustom,          //Ask if the player wants to play again
           [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
         mrYes:
         Begin
@@ -252,7 +252,7 @@ Begin
     End
     Else If ((gameArray[i, j].counter = 0) Or (gameArray[i, j].counter <> 0)) And
       (gameArray[i, j].open = False) Then
-      CounterCells(i, j);
+      CounterCells(i, j);                   //Use of the recursive function
     flagcount := 0;    //victory check
     opencount := 0;
     For a := 1 To 8 Do
@@ -279,14 +279,14 @@ Begin
     Begin
       If Timer1.Enabled = True Then
       Begin
-        Timer1.Enabled := False;
+        Timer1.Enabled := False;                      //Stop timer
         ShowMessage(wonTime + Label5.Caption);
       End
       Else
         ShowMessage(won);
-      MenuItem9Click(MenuItem9);
+      MenuItem9Click(MenuItem9);                 //Reveal board to show to the player who lost
       Invalidate;
-      Case QuestionDlg('playAgain', playAgain, mtCustom,
+      Case QuestionDlg('playAgain', playAgain, mtCustom,       //Ask if the player wants to play again
           [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
         mrYes:
         Begin
@@ -360,7 +360,7 @@ Begin
       End;
     End;
   End;
-  MenuItem9.Checked := False;
+  MenuItem9.Checked := False;       //set reveal as false
   Invalidate;
 End;
 

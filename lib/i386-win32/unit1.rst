@@ -11,6 +11,10 @@ unit1.won='You Won!'
 unit1.playagain='Want to play again?'
 
 
+# hash value = 188917118
+unit1.playagaincap='Play Again'
+
+
 # hash value = 24515
 unit1.yes='Yes'
 
