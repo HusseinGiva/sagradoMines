@@ -10,7 +10,7 @@ Uses
 
 Type
   TMine = Record
-    bomb, flag, Open: Boolean;
+    bomb, flag, open: Boolean;
     counter: Integer;
   End;
   TArray = Array[1..8, 1..8] Of TMine;
@@ -77,20 +77,19 @@ Implementation
 
 { TForm1 }
 
-Procedure TForm1.MenuItem2Click(Sender: TObject);
+Procedure TForm1.MenuItem2Click(Sender: TObject);    //Exit game on file - exit.
 Begin
-  Application.Terminate; //End game on file - exit.
+  Application.Terminate;
 End;
 
-Procedure TForm1.MenuItem4Click(Sender: TObject);
+Procedure TForm1.MenuItem4Click(Sender: TObject);    //new game at game-new
 Begin
-  NewGame();       //new game at game-new
+  NewGame();
 End;
 
-Procedure TForm1.MenuItem9Click(Sender: TObject);
+Procedure TForm1.MenuItem9Click(Sender: TObject);    //set reveal as checked or not and changes to the array.open
 Var
   i, j: Integer;
-  //set reveal as checked or not and changes to the array.open
 Begin
   MenuItem9.Checked := Not MenuItem9.Checked;
   If MenuItem9.Checked = True Then
@@ -99,7 +98,7 @@ Begin
     Begin
       For j := 1 To 8 Do
       Begin
-        gameArray[i, j].Open := True;
+        gameArray[i, j].open := True;
       End;
     End;
   End
@@ -109,21 +108,21 @@ Begin
     Begin
       For j := 1 To 8 Do
       Begin
-        gameArray[i, j].Open := False;
+        gameArray[i, j].open := False;
       End;
     End;
   End;
   Invalidate;
 End;
 
-Procedure TForm1.CounterCells(i, j: Integer);
+Procedure TForm1.CounterCells(i, j: Integer);        //recursive function to open cells around a blank one
 Var
-  m, n: Integer;        //recursive function to open cells around a blank one
+  m, n: Integer;
 Begin
-  If (gameArray[i, j].counter = 0) And (gameArray[i, j].Open = False) And
+  If (gameArray[i, j].counter = 0) And (gameArray[i, j].open = False) And
     (gameArray[i, j].flag = False) Then
   Begin
-    gameArray[i, j].Open := True;
+    gameArray[i, j].open := True;
     For m := -1 To 1 Do
     Begin
       For n := -1 To 1 Do
@@ -133,19 +132,18 @@ Begin
       End;
     End;
   End
-  Else If (gameArray[i, j].counter <> 0) And (gameArray[i, j].Open = False) Then
+  Else If (gameArray[i, j].counter <> 0) And (gameArray[i, j].open = False) Then
   Begin
-    gameArray[i, j].Open := True;
+    gameArray[i, j].open := True;
   End;
   Invalidate;
 End;
 
-Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
+Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;   //where all the clicks, left or right, are processed and subsequent changes to the array
   Shift: TShiftState; X, Y: Integer);
 Var
   i, j, flagcount, opencount, a, b: Integer;
-  //where all the click, left or right, are processed and subsquent changes to the array
-Begin                                                  //victory checks
+Begin
   If X Mod 50 = 0 Then
     i := X Div 50
   Else
@@ -162,13 +160,13 @@ Begin                                                  //victory checks
     End;
     CheckBox1.Visible := False;
     If (gameArray[i, j].flag = False) And (flags > 0) And
-      (gameArray[i, j].Open = False) Then
+      (gameArray[i, j].open = False) Then
     Begin
       gameArray[i, j].flag := True;
       flags := flags - 1;
       Label4.Caption := IntToStr(flags);
       Invalidate;
-      flagcount := 0;
+      flagcount := 0;         //victory check
       opencount := 0;
       For a := 1 To 8 Do
       Begin
@@ -184,7 +182,7 @@ Begin                                                  //victory checks
       Begin
         For b := 1 To 8 Do
         Begin
-          If gameArray[a, b].Open = False Then
+          If gameArray[a, b].open = False Then
           Begin
             opencount := opencount + 1;
           End;
@@ -230,7 +228,7 @@ Begin                                                  //victory checks
     CheckBox1.Visible := False;
     If gameArray[i, j].bomb = True Then
     Begin
-      gameArray[i, j].Open := True;
+      gameArray[i, j].open := True;
       Invalidate;
       If Timer1.Enabled = True Then
       Begin
@@ -253,9 +251,9 @@ Begin                                                  //victory checks
       End;
     End
     Else If ((gameArray[i, j].counter = 0) Or (gameArray[i, j].counter <> 0)) And
-      (gameArray[i, j].Open = False) Then
+      (gameArray[i, j].open = False) Then
       CounterCells(i, j);
-    flagcount := 0;
+    flagcount := 0;    //victory check
     opencount := 0;
     For a := 1 To 8 Do
     Begin
@@ -271,7 +269,7 @@ Begin                                                  //victory checks
     Begin
       For b := 1 To 8 Do
       Begin
-        If gameArray[a, b].Open = False Then
+        If gameArray[a, b].open = False Then
         Begin
           opencount := opencount + 1;
         End;
@@ -302,10 +300,9 @@ Begin                                                  //victory checks
   End;
 End;
 
-Procedure TForm1.NewGame();
+Procedure TForm1.NewGame();                          //Procedure with the on create actions of the form
 Var
   i, j, b, m, n: Integer;
-  //Procedure with the on create actions of the form
 Begin
   Randomize;
   Seconds := 150;
@@ -321,7 +318,7 @@ Begin
     Begin
       gameArray[i, j].bomb := False;
       gameArray[i, j].flag := False;
-      gameArray[i, j].Open := False;
+      gameArray[i, j].open := False;
     End;
   End;
   Repeat  // Coloca 10 bombs aleatoriamente
@@ -367,14 +364,14 @@ Begin
   Invalidate;
 End;
 
-Procedure TForm1.FormCreate(Sender: TObject);
+Procedure TForm1.FormCreate(Sender: TObject);        //when game is open
 Begin
-  NewGame();                            //when game is open
+  NewGame();
 End;
 
-Procedure TForm1.CheckBox1Change(Sender: TObject);
+Procedure TForm1.CheckBox1Change(Sender: TObject);   //set timer as visible or not
 Begin
-  If Label5.Visible = True Then                        //set timer as visible or not
+  If Label5.Visible = True Then
   Begin
     Label5.Visible := False;
   End
@@ -388,16 +385,14 @@ Begin
     Label6.Visible := True;
 End;
 
-
-Procedure TForm1.MenuItem10Click(Sender: TObject);
+Procedure TForm1.MenuItem10Click(Sender: TObject);   //show about window at form 2 in help-about
 Begin
-  Form2.ShowModal;                        //show about at form 2 in help-about
+  Form2.ShowModal;
 End;
 
-Procedure TForm1.PaintBox1Paint(Sender: TObject);
+Procedure TForm1.PaintBox1Paint(Sender: TObject);    //main board, flag, bomb and counter drawer painter
 Var
   Bitmap, bmBomb, bmFlag: TBitmap;
-  //main board, flag, bomb and counter drawer painter
   i, j, n, p: Integer;
 Begin
   Bitmap := TBitmap.Create;
@@ -408,24 +403,22 @@ Begin
   Bitmap.Canvas.Pen.Color := clWhite; //Line Color
   Bitmap.Canvas.Brush.Color := clWhite; //Fill Color
   Bitmap.Canvas.Rectangle(0, 0, PaintBox1.Width, PaintBox1.Height);
-  // Draws squares
   For i := 1 To 8 Do
   Begin
     For j := 1 To 8 Do
     Begin
-      n := (i * 50) - 50;
-      p := (j * 50) - 50;
+      n := (i * 50) - 50;            //X of the cell-top
+      p := (j * 50) - 50;            //Y of the cell-top
       Bitmap.Canvas.Pen.Color := clBlack; //Line Color
       Bitmap.Canvas.Brush.Color := clInactiveCaption; //Brush color
-      Bitmap.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
-      //Write some text, in this case an *
+      Bitmap.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);     // Draws squares
       //Define Font properties
       Bitmap.Canvas.Font.Name := 'Liberation Mono';
       Bitmap.Canvas.Font.Style := [fsBold];
       Bitmap.Canvas.Font.Size := 10;
       Bitmap.Canvas.Font.Color := clBlack;
-      //Write the text
-      If (gameArray[i, j].bomb = True) And (gameArray[i, j].Open = True) Then
+      //Write the counters or show the bombs or flags
+      If (gameArray[i, j].bomb = True) And (gameArray[i, j].open = True) Then
       Begin
         Bitmap.Canvas.Brush.Color := clWhite;
         Bitmap.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
@@ -435,7 +428,7 @@ Begin
         bmBomb.Free;
       End
       Else If ((gameArray[i, j].counter <> 0) Or (gameArray[i, j].counter = 0)) And
-        (gameArray[i, j].Open = True) Then
+        (gameArray[i, j].open = True) Then
       Begin
         Bitmap.Canvas.Brush.Color := clWhite;
         Bitmap.Canvas.Rectangle(n + 1, p + 1, n + 50 - 1, p + 50 - 1);
@@ -443,14 +436,14 @@ Begin
           Bitmap.Canvas.TextOut(n + 50 Div 2, p + 50 Div 3,
             IntToStr(gameArray[i, j].counter));
       End
-      Else If (gameArray[i, j].flag = True) And (gameArray[i, j].Open = False) Then
+      Else If (gameArray[i, j].flag = True) And (gameArray[i, j].open = False) Then
       Begin
         bmFlag := TBitmap.Create;
         bmFlag.LoadFromFile('flag.bmp');
         Bitmap.Canvas.Draw(n, p, bmFlag);
         bmFlag.Free;
       End;
-      If (gameArray[i, j].flag = True) And (gameArray[i, j].Open = True) Then
+      If (gameArray[i, j].flag = True) And (gameArray[i, j].open = True) Then
       Begin
         bmFlag := TBitmap.Create;
         bmFlag.LoadFromFile('flag.bmp');
@@ -463,17 +456,17 @@ Begin
   Bitmap.Free; //Free the memory used by the object Bitmap
 End;
 
-Procedure TForm1.Timer1Timer(Sender: TObject);
+Procedure TForm1.Timer1Timer(Sender: TObject);       //time control for the timer
 Var
   Min, Sec: String;
-Begin                                                      //time control for the timer
+Begin
   If Seconds = 0 Then
   Begin
     Timer1.Enabled := False;
     ShowMessage(timesUp);
-    MenuItem9Click(MenuItem9);
+    MenuItem9Click(MenuItem9);    //enable reveal to  show the whole board
     Invalidate;
-    Case QuestionDlg('playAgain', playAgain, mtCustom,
+    Case QuestionDlg('Play Again', playAgain, mtCustom,     //Ask if the player wants to play again
         [mrNo, no, mrYes, yes, 'IsDefault'], '') Of
       mrYes:
       Begin
