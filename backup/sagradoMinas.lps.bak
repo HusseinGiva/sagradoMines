@@ -19,10 +19,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
         <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
         <WindowIndex Value="1"/>
-        <TopLine Value="85"/>
-        <CursorPos X="23" Y="310"/>
-        <FoldState Value=" T4602 TCBA3 T7JBa T3ia03414 pj0pa0Wk"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <FoldState Value=" T4602 TCBA3 T7JBa T8i8211 T3ia034 plemA0+]9j1kV0Ws"/>
         <UsageCount Value="65"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -36,6 +37,8 @@
         <UnitName Value="Unit2"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="1"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
         <UsageCount Value="64"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -56,6 +59,9 @@
         <UsageCount Value="10"/>
       </Unit4>
     </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
     <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
         <Filename Value="unit1.pas"/>
@@ -63,23 +69,25 @@
       </Position1>
       <Position2>
         <Filename Value="unit1.pas"/>
-        <Caret Line="388" TopLine="55"/>
+        <Caret Line="69" Column="21" TopLine="56"/>
       </Position2>
       <Position3>
         <Filename Value="unit1.pas"/>
-        <Caret Line="69" Column="21" TopLine="56"/>
+        <Caret Line="70" Column="10" TopLine="20"/>
       </Position3>
       <Position4>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="70" Column="10" TopLine="20"/>
-      </Position4>
-      <Position5>
-        <Filename Value="unit2.pas"/>
-      </Position5>
-      <Position6>
         <Filename Value="unit2.pas"/>
         <Caret Line="44" Column="15" TopLine="14"/>
+      </Position4>
+      <Position5>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position5>
+      <Position6>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="144" Column="39" TopLine="84"/>
       </Position6>
     </JumpHistory>
   </ProjectSession>
+  <EditorMacros Count="0"/>
 </CONFIG>

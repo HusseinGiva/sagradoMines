@@ -136,3 +136,4 @@ msgstr "Ganhaste! E ainda tinhas "
 #: unit1.yes
 msgid "Yes"
 msgstr "Sim"
+

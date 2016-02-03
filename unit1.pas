@@ -79,17 +79,18 @@ Implementation
 
 Procedure TForm1.MenuItem2Click(Sender: TObject);
 Begin
-  Application.Terminate;
+  Application.Terminate; //End game on file - exit.
 End;
 
 Procedure TForm1.MenuItem4Click(Sender: TObject);
 Begin
-  NewGame();
+  NewGame();       //new game at game-new
 End;
 
 Procedure TForm1.MenuItem9Click(Sender: TObject);
 Var
   i, j: Integer;
+  //set reveal as checked or not and changes to the array.open
 Begin
   MenuItem9.Checked := Not MenuItem9.Checked;
   If MenuItem9.Checked = True Then
@@ -117,7 +118,7 @@ End;
 
 Procedure TForm1.CounterCells(i, j: Integer);
 Var
-  m, n: Integer;
+  m, n: Integer;        //recursive function to open cells around a blank one
 Begin
   If (gameArray[i, j].counter = 0) And (gameArray[i, j].Open = False) And
     (gameArray[i, j].flag = False) Then
@@ -142,8 +143,9 @@ End;
 Procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 Var
-  i, j, a, b, flagcount, opencount: Integer;
-Begin
+  i, j, flagcount, opencount, a, b: Integer;
+  //where all the click, left or right, are processed and subsquent changes to the array
+Begin                                                  //victory checks
   If X Mod 50 = 0 Then
     i := X Div 50
   Else
@@ -303,6 +305,7 @@ End;
 Procedure TForm1.NewGame();
 Var
   i, j, b, m, n: Integer;
+  //Procedure with the on create actions of the form
 Begin
   Randomize;
   Seconds := 150;
@@ -366,12 +369,12 @@ End;
 
 Procedure TForm1.FormCreate(Sender: TObject);
 Begin
-  NewGame();
+  NewGame();                            //when game is open
 End;
 
 Procedure TForm1.CheckBox1Change(Sender: TObject);
 Begin
-  If Label5.Visible = True Then
+  If Label5.Visible = True Then                        //set timer as visible or not
   Begin
     Label5.Visible := False;
   End
@@ -387,12 +390,13 @@ End;
 
 Procedure TForm1.MenuItem10Click(Sender: TObject);
 Begin
-  Form2.ShowModal;
+  Form2.ShowModal;                        //show about at form 2 in help-about
 End;
 
 Procedure TForm1.PaintBox1Paint(Sender: TObject);
 Var
   Bitmap, bmBomb, bmFlag: TBitmap;
+  //main board, flag, bomb and counter drawer painter
   i, j, n, p: Integer;
 Begin
   Bitmap := TBitmap.Create;
@@ -461,7 +465,7 @@ End;
 Procedure TForm1.Timer1Timer(Sender: TObject);
 Var
   Min, Sec: String;
-Begin
+Begin                                                      //time control for the timer
   If Seconds = 0 Then
   Begin
     Timer1.Enabled := False;

@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 1092
+  Left = 542
   Height = 472
-  Top = 171
+  Top = 221
   Width = 718
   Caption = 'Sagrado*Minas'
   ClientHeight = 449
@@ -22,7 +22,7 @@ object Form1: TForm1
   object Label1: TLabel
     Left = 496
     Height = 28
-    Top = 80
+    Top = 24
     Width = 87
     Caption = 'Bombs:'
     Font.CharSet = ANSI_CHARSET
@@ -36,7 +36,7 @@ object Form1: TForm1
   object Label2: TLabel
     Left = 632
     Height = 28
-    Top = 80
+    Top = 24
     Width = 30
     Caption = '10'
     Font.CharSet = ANSI_CHARSET
@@ -50,7 +50,7 @@ object Form1: TForm1
   object Label3: TLabel
     Left = 496
     Height = 28
-    Top = 168
+    Top = 72
     Width = 68
     Caption = 'Flags:'
     Font.CharSet = ANSI_CHARSET
@@ -64,7 +64,7 @@ object Form1: TForm1
   object Label4: TLabel
     Left = 632
     Height = 28
-    Top = 168
+    Top = 72
     Width = 30
     Caption = '10'
     Font.CharSet = ANSI_CHARSET
@@ -78,7 +78,7 @@ object Form1: TForm1
   object Label6: TLabel
     Left = 496
     Height = 28
-    Top = 272
+    Top = 160
     Width = 72
     Caption = 'Timer:'
     Font.CharSet = ANSI_CHARSET
@@ -93,7 +93,7 @@ object Form1: TForm1
   object Label5: TLabel
     Left = 616
     Height = 28
-    Top = 272
+    Top = 160
     Width = 77
     Caption = 'Label5'
     Font.CharSet = ANSI_CHARSET
@@ -108,15 +108,15 @@ object Form1: TForm1
   object CheckBox1: TCheckBox
     Left = 496
     Height = 24
-    Top = 240
+    Top = 120
     Width = 65
     Caption = 'Timer'
     OnChange = CheckBox1Change
     TabOrder = 0
   end
   object MainMenu1: TMainMenu
-    left = 608
-    top = 8
+    left = 472
+    top = 416
     object MenuItem1: TMenuItem
       Caption = 'File'
       object MenuItem2: TMenuItem
@@ -148,7 +148,7 @@ object Form1: TForm1
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
-    left = 648
-    top = 8
+    left = 512
+    top = 416
   end
 end

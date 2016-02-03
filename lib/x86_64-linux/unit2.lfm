@@ -1,10 +1,10 @@
 object Form2: TForm2
-  Left = 1223
-  Height = 282
-  Top = 720
+  Left = 592
+  Height = 286
+  Top = 339
   Width = 613
   Caption = 'About'
-  ClientHeight = 282
+  ClientHeight = 286
   ClientWidth = 613
   Color = clWhite
   LCLVersion = '1.2.6.0'
